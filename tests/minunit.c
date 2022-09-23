@@ -5,19 +5,18 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <stdio.h>
-#include "get_next_line.h"
+#include "libftprintf.h"
 #include "minunit.h"
 
-static int foo = 0;
-static int bar = 0;
-static int  fd;
+static int iexpected = 0;
+static int iresult= 0;
 //static double dbar = 0.1;
-//static const char* foostring = "Thisstring";
+static const char* sexpected;
+static const char* sresult;
 
 void test_setup_1(void) // setup at the start of a test suit
 {
-	foo = 7;
-	bar = 4;
+	iexpected = 42;
 }
 
 void test_teardown_1(void) // closing down at the end of a test suit
@@ -28,15 +27,35 @@ void test_teardown_1(void) // closing down at the end of a test suit
 MU_TEST(test_name_1) // static void test_name_1(void)
 {
 	// ARRANGE
+	iresult = 42;
 	
 
 	// ACT
 
 	// ASSERT
-		mu_assert_string_eq(actual_return, expected_return);
-		mu_check(test);
+		mu_assert_string_eq(sexpected, sresult);
 			// increment minunit_assert
-			// 
+			// if (expected != result){ print fail msg with message; minunit_status = 1 } 
+			// else print ok
+		mu_check(1 == 1);
+			// increment minunit_assert
+			// if (!test){ print fail msg; minunit_status = 1 } 
+			// else print ok
+		if (0)
+		{
+			mu_fail("Fail");
+				// increment minunit_assert
+				// print message
+				// minunit_status = 1;
+		}
+		mu_assert(1 == 1, "Fail");
+			// increment minunit_assert
+			// if (!test){ print fail msg with message; minunit_status = 1 } 
+			// else print ok
+		mu_assert_int_eq(iexpected, iresult);
+			// increment minunit_assert
+			// if (expected != result){ print fail msg with message; minunit_status = 1 } 
+			// else print ok
 }
 
 MU_TEST_SUITE(test_suite_1) // static void test_suit_1(void)

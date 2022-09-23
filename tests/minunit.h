@@ -67,6 +67,12 @@
 #include <math.h>
 
 /*  Print with colors */
+	// in case you come across the following error, 
+		// error: ‘%s’ directive output may be truncated writing up to 
+		// 10000 bytes into a region of size 940 [-Werror=format-truncation=]
+	// add the following flag to cc/gcc:
+		// -Wno-format-truncation
+	// as https://github.com/apple/cups/issues/5110
 #define PRINTRED(X)     "\033[31m"X"\033[0m"            /* Red */
 #define PRINTGRN(X)     "\033[32m"X"\033[0m"            /* Green */
 #define BOLDRED(X)      "\033[1m\033[31m"X"\033[0m"     /* Bold Red */
@@ -106,7 +112,7 @@ static void (*minunit_teardown)(void) = NULL;
 /*  Run test suite and unset setup and teardown functions */
 #define MU_RUN_SUITE(suite_name) MU__SAFE_BLOCK(\
 	minunit_suit++;\
-	printf("Test Suit %d:\n");\
+	printf("Test Suit %d:", minunit_suit);\
 	suite_name();\
 	minunit_setup = NULL;\
 	minunit_teardown = NULL;\
@@ -126,12 +132,12 @@ static void (*minunit_teardown)(void) = NULL;
 	}\
 	if (minunit_setup) (*minunit_setup)();\
 	minunit_status = 0;\
+	printf("\n%d:", minunit_run + 1);\
 	test();\
 	minunit_run++;\
-	printf("%d: ", minunit_run);
 	if (minunit_status) {\
 		minunit_fail++;\
-		printf(BOLDRED("KO!"));\
+		printf(BOLDRED(" KO! "));\
 		printf("\n%s\n", minunit_last_message);\
 	}\
 	fflush(stdout);\
@@ -162,7 +168,7 @@ static void (*minunit_teardown)(void) = NULL;
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(BOLDGREEN("OK"));\
+		printf(BOLDGREEN(" OK "));\
 	}\
 )
 
@@ -180,7 +186,7 @@ static void (*minunit_teardown)(void) = NULL;
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(BOLDGREEN("."));\
+		printf(BOLDGREEN(" OK "));\
 	}\
 )
 
@@ -195,7 +201,7 @@ static void (*minunit_teardown)(void) = NULL;
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(BOLDGREEN("."));\
+		printf(BOLDGREEN(" OK "));\
 	}\
 )
 
@@ -211,7 +217,7 @@ static void (*minunit_teardown)(void) = NULL;
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(BOLDGREEN("."));\
+		printf(BOLDGREEN(" OK "));\
 	}\
 )
 
@@ -228,12 +234,11 @@ static void (*minunit_teardown)(void) = NULL;
 	if(strcmp(minunit_tmp_e, minunit_tmp_r)) {\
 		snprintf(minunit_last_message, MINUNIT_MESSAGE_LEN, PRINTRED("%s failed:\n\t%s:%d: '%s' expected but was '%s'"), __func__, __FILE__, __LINE__, minunit_tmp_e, minunit_tmp_r);\
 		minunit_status = 1;\
-		return;\
-	} else {\
-		printf(BOLDGREEN("."));\
+		return;}\
+	else {\
+		printf(BOLDGREEN(" OK "));\
 	}\
 )
-
 /*
  * The following two functions were written by David Robert Nadeau
  * from http://NadeauSoftware.com/ and distributed under the
