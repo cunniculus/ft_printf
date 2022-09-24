@@ -1,2 +1,3 @@
-libftprintf.a
-ft_printf.o
+*.a
+*.o
+a.out

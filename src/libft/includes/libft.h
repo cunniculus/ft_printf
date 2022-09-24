@@ -15,8 +15,16 @@
 
 # include <stdlib.h> // malloc(), free(), size_t
 # include <unistd.h> // write()
-# define TRUE 1
-# define FALSE 0
+# include "get_next_line.h"
+
+# ifndef TRUE
+#  define TRUE 1
+# endif
+
+# ifndef FALSE
+#  define FALSE 0
+# endif
+
 # define INT_MAX 2147483647
 
 typedef struct s_list
@@ -68,5 +76,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+char	*get_next_line(int fd);
 
 #endif

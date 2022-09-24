@@ -1,27 +1,35 @@
-NAME		:= libftprintf.a
-SOURCES		:= ft_printf.c
-OBJECTS		:= $(patsubst %.c, %.o, $(SOURCES))
-INCLUDES	:= libftprintf.h
-LIBFT_DIR	:= libft
-LIBFT		:= libft.a
-CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror
+NAME			:= libftprintf.a
+SOURCES			:= ft_printf.c
+OBJECTS			:= $(patsubst %.c, %.o, $(SOURCES))
+LIBFT_DIR		:= libft
+INCLUDES		:= $(LIBFT_DIR)/includes 
+PRINT_INCLUDES  := includes
+GNL_HEADER		:= $(INCLUDES)/get_next_line.h
+LIBFT_HEADER	:= $(INCLUDES)/libft.h
+FTPRINTF_HEADER	:= libftprintf.h
+LIBFT			:= libft.a
+CC				:= cc
+CFLAGS			:= -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
+	@echo building ft_printf library
+	@ar rcs $(NAME) $(OBJECTS)
 
-$(OBJECTS): $(SOURCES) 
-	@make -C $(LIBFT_DIR) bonus
-	$(CC) $(CFLAGS) -c $(SOURCES)
+$(OBJECTS): $(SOURCES) $(INCLUDES)
+	@echo compiling
+	@make -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) -I$(INCLUDES) -I$(PRINT_INCLUDES) -c $(SOURCES)
 
 clean:
 	@rm -f $(OBJECTS)
+	@echo clean
 	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
+	@echo fclean
 	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all
