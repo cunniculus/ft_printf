@@ -30,8 +30,8 @@ $(NAME): $(SRCS) $(SRC_TEST)
 m: mtest 
 	@./mtest
 
-mtest: $(SRCS) minunit.c $(TEST_FILES)
-	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_DIR) minunit.c -o mtest $(SRCS)
+mtest: $(SRCS) mintest.c $(TEST_FILES)
+	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) mintest.c -lft -o mtest 
 
 vgnl: $(NAME) 
 	valgrind ./$(NAME)
