@@ -1,7 +1,7 @@
 NAME			= ft_printf_test
 SRC_TEST		= ft_printf_test.c
 
-CFLAGS 			= -Wall -Wextra -Werror
+CFLAGS 			= -Wall -Wextra -Werror -Wno-format
 
 PRINTF_INCLUDES = ../src/includes
 LIBFT_INCLUDES  := ../src/libft/includes
