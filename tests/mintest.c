@@ -19,12 +19,15 @@ void test_setup_1(void) // setup at the start of a test suit
 {
 	expected_int[0] = 4;
 	expected_int[1] = 20;
+	expected_int[2] = 12;
+	expected_int[3] = 15;
 }
 
 void test_teardown_1(void) // closing down at the end of a test suit
 {
 	/* Nothing */
 }
+
 
 MU_TEST(test_print_char) 
 {
@@ -37,12 +40,25 @@ MU_TEST(test_print_str)
 	mu_assert_int_eq(expected_int[1], result_int[1]);
 }
 
+MU_TEST(test_print_percentage) 
+{
+	result_int[2] = ft_printf("%%%c%s\n", 'P', "ercentage");
+	mu_assert_int_eq(expected_int[2], result_int[2]);
+}
+MU_TEST(test_print_int) 
+{
+	result_int[3] = ft_printf("%d %i%s\n", 42, 37, " anthopos");
+	mu_assert_int_eq(expected_int[3], result_int[3]);
+}
+
 MU_TEST_SUITE(test_suite_1) // static void test_suit_1(void)
 {
 	MU_SUITE_CONFIGURE(&test_setup_1, &test_teardown_1); 
 
 	MU_RUN_TEST(test_print_char);
 	MU_RUN_TEST(test_print_str); 
+	MU_RUN_TEST(test_print_percentage);
+	MU_RUN_TEST(test_print_int);
 }
 
 int main(void) 

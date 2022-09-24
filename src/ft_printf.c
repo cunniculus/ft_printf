@@ -73,7 +73,7 @@ static int	converter(const char **format, va_list args, size_t *counter)
 	nul_init(flag_set);
 	if (char_is_flag(**format))
 		flag_grabber(format, flag_set);
-	if (char_is_specifier(**format))
+	if (char_is_specifier(**format) || **format == '%')
 		convert_print(format, args, counter, flag_set);
 	return (0);	
 }
@@ -99,6 +99,26 @@ static int	convert_print(const char **format, va_list args,\
 		(*counter) += ft_putchar_fd(va_arg(args, unsigned int), 1);
 	if (**format == 's')
 		(*counter) += ft_putstr_fd(va_arg(args, char *), 1);
+	if (**format == 'p')
+	{
+		; // todo
+	}
+	if (**format == 'd' || **format == 'i')
+		(*counter) += ft_putstr_fd(ft_itoa(va_arg(args, int)), 1);
+	if (**format == 'u')
+	{
+		; // todo
+	}
+	if (**format == 'x')
+	{
+		; // todo
+	}
+	if (**format == 'X')
+	{
+		; // todo
+	}
+	if (**format == '%')
+		(*counter) += ft_putchar_fd('%', 1);
 	if (flag_set)
 	{
 		;
