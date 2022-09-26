@@ -22,6 +22,7 @@
 	// if % calls converts; else calls putchar
 static int	parce_format(const char **format, va_list args, size_t *counter);
 static int	converter(const char **format, va_list args, size_t *counter);
+static int setup_ftprintf_info(const char **format, size_t *counter, t_printf_info *info);
 	// initialize flag_set to nul char; returns void
 static void	nul_init(char flag_set[FLAG_SIZE]);
 	// boolean function
@@ -31,9 +32,12 @@ static int	char_is_specifier(char c);
  // flag_grabber: grabs flag, minimal width, and precision from format string, 
  // stores it on flag_set, and updates format pointer position
  // returns numbers of flags on the current conversiont specification
-static int	flag_grabber(const char **format, char flag_set[FLAG_SIZE]);
-static int	convert_print(const char **format, va_list args,\
+ //
+//static int	flag_grabber(const char **format, char flag_set[FLAG_SIZE]);
+static int	convert_print(t_printf_info *info, va_list args,\
 		size_t *counter, char flag_set[FLAG_SIZE]);
+static void	precision_setup(const char **format, t_printf_info *info);
+static int	ft_putnbr_base(unsigned int nbr, char *base);
 
 int	ft_printf(const char *format, ...)
 {
@@ -68,16 +72,54 @@ static int	parce_format(const char **format, va_list args, size_t *counter)
 
 static int	converter(const char **format, va_list args, size_t *counter)
 {
-	char flag_set[FLAG_SIZE];
+	char			flag_set[FLAG_SIZE];
+	t_printf_info	info;
 
 	nul_init(flag_set);
+	setup_ftprintf_info(format, counter, &info);
+	/*
 	if (char_is_flag(**format))
 		flag_grabber(format, flag_set);
-	if (char_is_specifier(**format) || **format == '%')
-		convert_print(format, args, counter, flag_set);
+	*/
+	convert_print(&info, args, counter, flag_set);
 	return (0);	
 }
 
+static int setup_ftprintf_info(const char **format, size_t *counter, t_printf_info *info)
+{
+	while (char_is_flag(**format))
+	{
+		if (**format == '#')
+			info->alt = TRUE;
+		if (**format == ' ')
+			info->space = TRUE;
+		if (ft_isdigit(**format))
+		{
+		//	width_setup(format, info);
+		//	;
+		}
+		if (**format == '.')
+			precision_setup(format, info);
+		(*format)++;
+	}
+	if (char_is_specifier(**format) || **format == '%')
+		info->spec = **format;
+	return (*counter);
+	
+
+}
+static void	precision_setup(const char **format, t_printf_info *info)
+{
+	(*format)++;
+	while (ft_isdigit(**format))
+	{
+		info->prec = info->prec * 10 + **format;
+		(*format)++;
+	}
+	(*format)--;
+}
+
+/*
 static int	flag_grabber(const char **format, char flag_set[FLAG_SIZE])
 {
 	int	i;
@@ -91,33 +133,44 @@ static int	flag_grabber(const char **format, char flag_set[FLAG_SIZE])
 	}
 	return (i);
 }
-
-static int	convert_print(const char **format, va_list args,\
+*/
+static int	convert_print(t_printf_info *info, va_list args,\
 		size_t *counter, char flag_set[FLAG_SIZE])
 {
-	if (**format == 'c')
+	unsigned int_nbr;
+	char *str_nbr;
+
+	if (info->spec == 'c')
 		(*counter) += ft_putchar_fd(va_arg(args, unsigned int), 1);
-	if (**format == 's')
+	if (info->spec == 's')
 		(*counter) += ft_putstr_fd(va_arg(args, char *), 1);
-	if (**format == 'p')
+	if (info->spec == 'p')
 	{
 		; // todo
 	}
-	if (**format == 'd' || **format == 'i')
-		(*counter) += ft_putstr_fd(ft_itoa(va_arg(args, int)), 1);
-	if (**format == 'u')
+	if (info->spec == 'd' || info->spec == 'i')
+	{
+		str_nbr = ft_itoa(va_arg(args, int));
+		(*counter) += ft_putstr_fd(str_nbr, 1);
+		free(str_nbr);
+	}
+	if (info->spec == 'u')
 	{
 		; // todo
 	}
-	if (**format == 'x')
+	if (info->spec == 'x')
+	{
+		int_nbr = va_arg(args, int);
+		if (info->alt)
+			if (int_nbr)
+				(*counter) += ft_putstr_fd("0x", 1);
+		(*counter) += ft_putnbr_base(int_nbr, HEXBASELOW);
+	}
+	if (info->spec == 'X')
 	{
 		; // todo
 	}
-	if (**format == 'X')
-	{
-		; // todo
-	}
-	if (**format == '%')
+	if (info->spec == '%')
 		(*counter) += ft_putchar_fd('%', 1);
 	if (flag_set)
 	{
@@ -131,7 +184,7 @@ static void	nul_init(char flag_set[FLAG_SIZE])
 	int	i;
 
 	i = 0;
-	while (flag_set[i])
+	while (i < FLAG_SIZE)
 	{
 		flag_set[i] = '\0';
 		i++;
@@ -154,3 +207,30 @@ static int char_is_specifier(char c)
 	return (FALSE);
 }
 
+static int	ft_putnbr_base(unsigned int nbr, char *base)
+{
+	unsigned int	b;
+	int				digit;
+	char			nbr_to_print[11];
+	unsigned int	nbr_cpy;
+
+	nbr_cpy = nbr;
+	b = ft_strlen(base);
+	digit = 1;
+	while (nbr_cpy >= b)
+	{
+		nbr_cpy /= b;
+		digit++;
+	}
+	nbr_to_print[digit] = '\0';
+	if (!nbr)
+		nbr_to_print[0] = '0';
+	while (nbr)
+	{
+		digit--;
+		nbr_to_print[digit] = base[nbr % b];
+		nbr = nbr / b;
+	}
+	ft_putstr_fd(nbr_to_print, 1);
+	return (ft_strlen(nbr_to_print));
+}

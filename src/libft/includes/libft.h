@@ -25,7 +25,12 @@
 #  define FALSE 0
 # endif
 
-# define INT_MAX 2147483647
+# ifndef INT_MAX
+#  define INT_MAX 2147483647
+# endif
+# ifndef INT_MAX
+#  define INT_MIN -2147483648
+# endif
 
 typedef struct s_list
 {

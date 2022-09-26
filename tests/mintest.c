@@ -51,7 +51,7 @@ MU_TEST(test_print_int)
 	mu_assert_int_eq(expected_int[3], result_int[3]);
 }
 
-MU_TEST_SUITE(test_suite_1) // static void test_suit_1(void)
+MU_TEST_SUITE(mandatorio) // static void test_suit_1(void)
 {
 	MU_SUITE_CONFIGURE(&test_setup_1, &test_teardown_1); 
 
@@ -61,9 +61,42 @@ MU_TEST_SUITE(test_suite_1) // static void test_suit_1(void)
 	MU_RUN_TEST(test_print_int);
 }
 
+// --- Tests for bonus part --- 
+
+void test_setup_bonus(void) // setup at the start of a test suit
+{
+	expected_int[0] = 4;
+	expected_int[1] = 11;
+	expected_int[2] = 2;
+	expected_int[3] = 11;
+}
+
+void test_teardown_bonus(void) // closing down at the end of a test suit
+{
+	/* Nothing */
+}
+MU_TEST(test_alt) 
+{
+	result_int[0] = ft_printf("%#x\n", 10);
+	mu_assert_int_eq(expected_int[0], result_int[0]);
+	result_int[1] = ft_printf("%#x\n", 2147483647);
+	mu_assert_int_eq(expected_int[1], result_int[1]);
+	result_int[2] = ft_printf("%#x\n", 0);
+	mu_assert_int_eq(expected_int[2], result_int[2]);
+	result_int[3] = ft_printf("%#x\n", -1);
+	mu_assert_int_eq(expected_int[3], result_int[3]);
+}
+MU_TEST_SUITE(bonus) 
+{
+	MU_SUITE_CONFIGURE(&test_setup_bonus, &test_teardown_bonus); 
+
+	MU_RUN_TEST(test_alt);
+}
+
 int main(void) 
 {
-	MU_RUN_SUITE(test_suite_1);
+	MU_RUN_SUITE(mandatorio);
+	MU_RUN_SUITE(bonus);
 	MU_REPORT();
 	return MU_EXIT_CODE; // exit conde = minunit_fail 
 }

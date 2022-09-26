@@ -84,7 +84,7 @@
 #define MINUNIT_EPSILON 1E-12
 
 /*  Misc. counters */
-static int minunit_suit = 0;
+static int minunit_suite = 0;
 static int minunit_run = 0;
 static int minunit_assert = 0;
 static int minunit_fail = 0;
@@ -111,11 +111,12 @@ static void (*minunit_teardown)(void) = NULL;
 
 /*  Run test suite and unset setup and teardown functions */
 #define MU_RUN_SUITE(suite_name) MU__SAFE_BLOCK(\
-	minunit_suit++;\
-	printf("Test Suit %d:", minunit_suit);\
+	minunit_suite++;\
+	printf("Test Suite %d:\n", minunit_suite);\
 	suite_name();\
 	minunit_setup = NULL;\
 	minunit_teardown = NULL;\
+	printf("\n\n");\
 )
 
 /*  Configure setup and teardown functions */
