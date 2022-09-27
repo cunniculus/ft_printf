@@ -104,6 +104,6 @@ static void init_specification_info(t_printf_info *info)
 	info->showsign = FALSE;
 	info->pad = ' ';
 	info->width = -1;
-	info->prec = -1;
+	info->prec = 0;
 	info->spec = '\0';
 }

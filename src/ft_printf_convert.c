@@ -1,5 +1,4 @@
 #include "libftprintf.h"
-#include <stdio.h>
 
 int	convert_printf(t_printf_info *info, va_list args, size_t *counter)
 {
@@ -28,94 +27,22 @@ int	convert_printf(t_printf_info *info, va_list args, size_t *counter)
 
 size_t	convert_nbr_int(t_printf_info *info, va_list args)
 {
-	char	*str_nbr;
-	size_t	counter;
-	int		i;
-
-	counter = 0;
-	if (info->spec == 'd' || info->spec == 'i')
-	{
-		
-		str_nbr = ft_itoa(va_arg(args, int)); 
-		if (info->showsign && !(*str_nbr == '-'))
-			str_nbr = ft_strjoin_free("+", &str_nbr);
-		else if (info->space && !(*str_nbr == '-'))
-			str_nbr = ft_strjoin_free(" ", &str_nbr);
-		i = 0;
-		if (info->pad == '0' && *str_nbr == '-')
-		{
-			counter += ft_putchar_fd('-', 1);
-			i++;
-		}
-		while (info->width-- > (int) ft_strlen(str_nbr))
-			counter += ft_putchar_fd(info->pad, 1);
-		counter += ft_putstr_fd(&str_nbr[i], 1);
-		free(str_nbr);
-	}
 	if (info->spec == 'u')
-	{
-		str_nbr = ft_utoa(va_arg(args, unsigned int));
-		i = 0;
-		if (info->pad == '0' && *str_nbr == '-')
-		{
-			counter += ft_putchar_fd('-', 1);
-			i++;
-		}
-		while (info->width-- > (int) ft_strlen(str_nbr))
-			counter += ft_putchar_fd(info->pad, 1);
-		counter += ft_putstr_fd(&str_nbr[i], 1);
-		free(str_nbr);
-	}
-	return (counter);
+		return (convert_u(info, args));
+	if (info->spec == 'd' || info->spec == 'i')
+		return (convert_di(info, args));
+	return (0);
 }
 
 int	convert_pchar(t_printf_info *info, va_list args)
 {
-	size_t				counter;
-	int					i;
-	char				*str;
-	unsigned long int	hex_nbr;
-
-	counter = 0;
-	if (info->spec == '%')
-		counter += ft_putchar_fd('%', 1);
-	if (info->spec == 'c')
-	{
-		while (info->width-- > 1) 
-			counter += ft_putchar_fd(info->pad, 1);
-		counter += ft_putchar_fd((unsigned char) va_arg(args, int), 1);
-	}
+	if (info->spec == '%' || info->spec == 'c')
+		return (convert_c_and_percent(info, args));
 	if (info->spec == 's')
-	{
-		str = va_arg(args, char *);
-		while (info->width > (int) ft_strlen(str)) 
-		{
-			counter += ft_putchar_fd(info->pad, 1);
-			info->width--;
-		}
-		i = 0;
-		while (i < info->width)
-		{
-			counter += ft_putchar_fd(str[i], 1);
-			i++;
-		}
-		if (info->width == -1)
-			counter += ft_putstr_fd(str, 1);
-	}
+		return (convert_s(info, args));
 	if (info->spec == 'p')
-	{
-		hex_nbr = va_arg(args, unsigned long int);
-		str = ft_litoa_base(hex_nbr, HEXBASELOW);
-		str = ft_strjoin_free("0x", &str);
-		while (info->width > (int) ft_strlen(str)) 
-		{
-			counter += ft_putchar_fd(info->pad, 1);
-			info->width--;
-		}
-		counter += ft_putstr_fd(str, 1);
-		free (str);
-	}
-	return (counter);
+		return (convert_p(info, args));
+	return (0);
 }
 
 int	convert_base(t_printf_info *info, va_list args)
@@ -132,10 +59,15 @@ int	convert_base(t_printf_info *info, va_list args)
 		if (info->alt)
 			if (nbr)
 				str = ft_strjoin_free("0", &str);
-		while (info->width > (int) ft_strlen(str)) 
+		while (info->width - info->prec > (int) ft_strlen(str))
 		{
 			counter += ft_putchar_fd(info->pad, 1);
 			info->width--;
+		}
+		while (info->prec > (int) ft_strlen(str))
+		{
+			counter += ft_putchar_fd('0', 1);
+			info->prec--;
 		}
 		counter += ft_putstr_fd(str, 1);
 		free (str);
@@ -147,10 +79,15 @@ int	convert_base(t_printf_info *info, va_list args)
 		if (info->alt)
 			if (nbr)
 				str = ft_strjoin_free("0x", &str);
-		while (info->width > (int) ft_strlen(str)) 
+		while (info->width - info->prec > (int) ft_strlen(str))
 		{
 			counter += ft_putchar_fd(info->pad, 1);
 			info->width--;
+		}
+		while (info->prec > (int) ft_strlen(str))
+		{
+			counter += ft_putchar_fd('0', 1);
+			info->prec--;
 		}
 		counter += ft_putstr_fd(str, 1);
 		free (str);
@@ -162,10 +99,15 @@ int	convert_base(t_printf_info *info, va_list args)
 		if (info->alt)
 			if (nbr)
 				str = ft_strjoin_free("0X", &str);
-		while (info->width > (int) ft_strlen(str)) 
+		while (info->width - info->prec > (int) ft_strlen(str))
 		{
 			counter += ft_putchar_fd(info->pad, 1);
 			info->width--;
+		}
+		while (info->prec > (int) ft_strlen(str))
+		{
+			counter += ft_putchar_fd('0', 1);
+			info->prec--;
 		}
 		counter += ft_putstr_fd(str, 1);
 		free (str);

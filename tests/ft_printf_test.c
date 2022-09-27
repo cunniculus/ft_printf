@@ -172,9 +172,8 @@ int main(void)
 	ft_printf("%03xHello!\n", number);
 	ft_printf("%04xHello!\n", number);
 
-
-
-	number = 1234;
+/* precision */
+	number = 123;
 	ft_printf("\n ### Precision: (.)\n");
 	ft_printf("%.dHello!\n", number);
 	ft_printf("%.0dHello!\n", number);
@@ -261,6 +260,41 @@ int main(void)
 
 /* tests for padding */
 	ft_printf("\n%02d |%03d |\n", 1, -1);
-	ft_printf("\n%02i |%03i |\n", 1, -1);
+	ft_printf("%02i |%03i |\n", 1, -1);
+
+/* octal */
+	ft_printf("\n%o\n", -10);
+	ft_printf("%#04o\n", 10);
+	ft_printf("%0#4o\n", 10);
+
+/* precision */
+	number = -123;
+	ft_printf("\n ### Precision: (.)\n");
+	ft_printf("%.dHello!\n", number);
+	ft_printf("%.0dHello!\n", number);
+	ft_printf("%.1dHello!\n", number);
+	ft_printf("%.2dHello!\n", number);
+	ft_printf("%.3dHello!\n", number);
+	ft_printf("%.4dHello!\n", number);
+	ft_printf("%.5dHello!\n", number);
+	ft_printf("%.6iHello!\n", number);
+
+	ft_printf("\n%dHello!\n", number);
+	ft_printf("%0dHello!\n", number);
+	ft_printf("%01dHello!\n", number);
+	ft_printf("%02dHello!\n", number);
+	ft_printf("%03dHello!\n", number);
+	ft_printf("%04dHello!\n", number);
+	ft_printf("%05dHello!\n", number);
+	ft_printf("%06iHello!\n", number);
+
+	ft_printf("\n%6.dHello!\n", number);
+	ft_printf("%6.0dHello!\n", number);
+	ft_printf("%6.1dHello!\n", number);
+	ft_printf("%6.2dHello!\n", number);
+	ft_printf("%6.3dHello!\n", number);
+	ft_printf("%6.4dHello!\n", number);
+	ft_printf("%6.5dHello!\n", number);
+	ft_printf("%6.6iHello!\n", number);
 	return (0);
 }

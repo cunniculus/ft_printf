@@ -10,7 +10,10 @@ PRINTF_LIB		:= libftprintf.a
 SRCDIR 			= ../src
 SRC 			= ft_printf.c\
 				  ft_printf_utils.c\
-				  ft_printf_convert.c
+				  ft_printf_convert.c\
+				  ft_convert_integer.c\
+				  ft_convert_char_and_str.c\
+				  ft_convert_pointer.c
 SRCS 			= $(addprefix $(SRCDIR)/, $(SRC))
 
 OBJS            = ft_printf_test.o\

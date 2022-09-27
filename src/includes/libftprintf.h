@@ -40,11 +40,17 @@ int 	ft_printf(const char *format, ...);
 int		char_is_flag(int c);
 int		char_is_specifier(char c);
 int		ft_putnbr_base(unsigned long nbr, char *base);
-char *	ft_litoa_base(unsigned long nbr, char *base);
+char	*ft_litoa_base(unsigned long nbr, char *base);
 int 	convert_printf(t_printf_info *info, va_list args, size_t *counter);
 size_t	convert_nbr_int(t_printf_info *info, va_list args);
 int 	convert_pchar(t_printf_info *info, va_list args);
 int 	convert_base(t_printf_info *info, va_list args);
 char	*ft_strjoin_free(char *s1, char  **s2);
+size_t	convert_u(t_printf_info *info, va_list args);
+size_t	convert_di(t_printf_info *info, va_list args);
+size_t	width_and_precision_handler(t_printf_info *info, char *str);
+size_t	convert_c_and_percent(t_printf_info *info, va_list args);
+size_t	convert_s(t_printf_info *info, va_list args);
+size_t	convert_p(t_printf_info *info, va_list args);
 
 #endif

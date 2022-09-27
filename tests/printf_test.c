@@ -172,9 +172,8 @@ int main(void)
 	printf("%03xHello!\n", number);
 	printf("%04xHello!\n", number);
 
-
-
-	number = 1234;
+/* precision */
+	number = 123;
 	printf("\n ### Precision: (.)\n");
 	printf("%.dHello!\n", number);
 	printf("%.0dHello!\n", number);
@@ -267,5 +266,35 @@ int main(void)
 	printf("\n%o\n", -10);
 	printf("%#04o\n", 10);
 	printf("%0#4o\n", 10);
+
+/* precision */
+	number = -123;
+	printf("\n ### Precision: (.)\n");
+	printf("%.dHello!\n", number);
+	printf("%.0dHello!\n", number);
+	printf("%.1dHello!\n", number);
+	printf("%.2dHello!\n", number);
+	printf("%.3dHello!\n", number);
+	printf("%.4dHello!\n", number);
+	printf("%.5dHello!\n", number);
+	printf("%.6iHello!\n", number);
+
+	printf("\n%dHello!\n", number);
+	printf("%0dHello!\n", number);
+	printf("%01dHello!\n", number);
+	printf("%02dHello!\n", number);
+	printf("%03dHello!\n", number);
+	printf("%04dHello!\n", number);
+	printf("%05dHello!\n", number);
+	printf("%06iHello!\n", number);
+
+	printf("\n%6.dHello!\n", number);
+	printf("%6.0dHello!\n", number);
+	printf("%6.1dHello!\n", number);
+	printf("%6.2dHello!\n", number);
+	printf("%6.3dHello!\n", number);
+	printf("%6.4dHello!\n", number);
+	printf("%6.5dHello!\n", number);
+	printf("%6.6iHello!\n", number);
 	return (0);
 }
