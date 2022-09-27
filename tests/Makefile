@@ -8,7 +8,9 @@ LIBFT_INCLUDES  := ../src/libft/includes
 PRINTF_LIB		:= libftprintf.a
 
 SRCDIR 			= ../src
-SRC 			= ft_printf.c
+SRC 			= ft_printf.c\
+				  ft_printf_utils.c\
+				  ft_printf_convert.c
 SRCS 			= $(addprefix $(SRCDIR)/, $(SRC))
 
 OBJS            = ft_printf_test.o\
@@ -38,6 +40,20 @@ vgnl: $(NAME)
 
 vm: mtest
 	valgrind --error-exitcode=42 --leak-check=full ./mtest
+
+printf:
+	@make -C $(SRCDIR) re
+	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) printf_test.c -lft -L../src -lftprintf -o $(NAME)
+	./$(NAME)
+
+dif:
+	@make -C $(SRCDIR) re
+	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) $(SRC_TEST) -lft -L../src -lftprintf -o $(NAME)
+	./$(NAME) > ft_printf_output.txt
+	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) printf_test.c -lft -L../src -lftprintf -o $(NAME)
+	./$(NAME) > printf_output.txt
+	diff ft_printf_output.txt printf_output.txt > output_diff
+
 clean:
 	@rm -f *.o
 	

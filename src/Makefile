@@ -1,5 +1,7 @@
 NAME			:= libftprintf.a
-SOURCES			:= ft_printf.c
+SOURCES			:= ft_printf.c\
+				   ft_printf_utils.c\
+				   ft_printf_convert.c
 OBJECTS			:= $(patsubst %.c, %.o, $(SOURCES))
 LIBFT_DIR		:= libft
 INCLUDES		:= $(LIBFT_DIR)/includes 

@@ -10,7 +10,11 @@
 # endif
 
 # ifndef HEXBASEUP 
-#  define HEXBASEup "0123456789ABCDEF"
+#  define HEXBASEUP "0123456789ABCDEF"
+# endif
+
+# ifndef DECIMALBASE
+#  define DECIMALBASE "0123456789"
 # endif
 
 # ifndef OCTALBASE 
@@ -22,16 +26,24 @@
 
 typedef struct s_printf_info
 {
-	int				prec;
-	int				width;
-	unsigned char	spec;
 	unsigned int	alt;
 	unsigned int	space;
 	unsigned int	left;
 	unsigned int	showsign;
 	unsigned char	pad;
+	int				width;
+	int				prec;
+	unsigned char	spec;
 }	t_printf_info;
 
 int ft_printf(const char *format, ...);
+int	char_is_flag(int c);
+int	char_is_specifier(char c);
+int	ft_putnbr_base(unsigned long nbr, char *base);
+int convert_printf(t_printf_info *info, va_list args, size_t *counter);
+size_t	convert_nbr_int(t_printf_info *info, va_list args);
+int convert_pchar(t_printf_info *info, va_list args, size_t *counter);
+int convert_base(t_printf_info *info, va_list args, size_t *counter);
+char	*ft_strjoin_free(char *s1, char  **s2);
 
 #endif
