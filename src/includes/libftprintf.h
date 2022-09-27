@@ -36,14 +36,15 @@ typedef struct s_printf_info
 	unsigned char	spec;
 }	t_printf_info;
 
-int ft_printf(const char *format, ...);
-int	char_is_flag(int c);
-int	char_is_specifier(char c);
-int	ft_putnbr_base(unsigned long nbr, char *base);
-int convert_printf(t_printf_info *info, va_list args, size_t *counter);
+int 	ft_printf(const char *format, ...);
+int		char_is_flag(int c);
+int		char_is_specifier(char c);
+int		ft_putnbr_base(unsigned long nbr, char *base);
+char *	ft_litoa_base(unsigned long nbr, char *base);
+int 	convert_printf(t_printf_info *info, va_list args, size_t *counter);
 size_t	convert_nbr_int(t_printf_info *info, va_list args);
-int convert_pchar(t_printf_info *info, va_list args, size_t *counter);
-int convert_base(t_printf_info *info, va_list args, size_t *counter);
+int 	convert_pchar(t_printf_info *info, va_list args);
+int 	convert_base(t_printf_info *info, va_list args);
 char	*ft_strjoin_free(char *s1, char  **s2);
 
 #endif

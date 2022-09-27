@@ -43,6 +43,34 @@ int	ft_putnbr_base(unsigned long nbr, char *base)
 	return (ft_strlen(nbr_to_print));
 }
 
+char *ft_litoa_base(unsigned long nbr, char *base)
+{
+	unsigned long int	b;
+	int					digit;
+	char				*nbr_to_print;
+	unsigned long int	nbr_cpy;
+
+	nbr_cpy = nbr;
+	b = ft_strlen(base);
+	digit = 1;
+	while (nbr_cpy >= b)
+	{
+		nbr_cpy /= b;
+		digit++;
+	}
+	nbr_to_print = malloc(sizeof(char) * (digit + 1));
+	nbr_to_print[digit] = '\0';
+	if (!nbr)
+		nbr_to_print[0] = '0';
+	while (nbr)
+	{
+		digit--;
+		nbr_to_print[digit] = base[nbr % b];
+		nbr = nbr / b;
+	}
+	return (nbr_to_print);
+}
+
 char	*ft_strjoin_free(char *s1, char **s2)
 {
 	char	*str;

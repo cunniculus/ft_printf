@@ -249,5 +249,23 @@ int main(void)
 	printf("%0-3xHello!\n", number);
 	printf("%0-4xHello!\n", number);
 
+	printf("%10%Go\n");
+	printf("%10cGo\n", 'G');
+	
+	printf("\n%0s\n", "abc");
+
+	printf("\n%p\n", number);
+	printf("%0p\n", number);
+	printf("%3p\n", number);
+	printf("%20p\n", number);
+
+/* tests for padding */
+	printf("\n%02d |%03d |\n", 1, -1);
+	printf("%02i |%03i |\n", 1, -1);
+
+/* octal */
+	printf("\n%o\n", -10);
+	printf("%#04o\n", 10);
+	printf("%0#4o\n", 10);
 	return (0);
 }

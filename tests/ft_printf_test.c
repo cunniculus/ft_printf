@@ -249,5 +249,18 @@ int main(void)
 	ft_printf("%0-3xHello!\n", number);
 	ft_printf("%0-4xHello!\n", number);
 
+	ft_printf("%10%Go\n");
+	ft_printf("%10cGo\n", 'G');
+	
+	ft_printf("\n%0s\n", "abc");
+
+	ft_printf("\n%p\n", number);
+	ft_printf("%0p\n", number);
+	ft_printf("%3p\n", number);
+	ft_printf("%20p\n", number);
+
+/* tests for padding */
+	ft_printf("\n%02d |%03d |\n", 1, -1);
+	ft_printf("\n%02i |%03i |\n", 1, -1);
 	return (0);
 }

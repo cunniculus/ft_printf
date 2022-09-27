@@ -78,6 +78,7 @@ static int setup_specification_info(const char **format, size_t *counter,\
 
 static void	width_setup(const char **format, t_printf_info *info)
 {
+	info->width = 0;
 	while (ft_isdigit(**format))
 	{
 		info->width = info->width * 10 + (**format - '0');
@@ -102,7 +103,7 @@ static void init_specification_info(t_printf_info *info)
 	info->left = FALSE;
 	info->showsign = FALSE;
 	info->pad = ' ';
-	info->width = 0;
-	info->prec = 0;
+	info->width = -1;
+	info->prec = -1;
 	info->spec = '\0';
 }
