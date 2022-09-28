@@ -45,17 +45,19 @@ vm: mtest
 	valgrind --error-exitcode=42 --leak-check=full ./mtest
 
 printf:
-	@make -C $(SRCDIR) re
+	@@make -C $(SRCDIR) re
 	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) printf_test.c -lft -L../src -lftprintf -o $(NAME)
 	./$(NAME)
 
 dif:
+	@cat printf_test.c | sed '5,$$ s/printf/ft_printf/g' > ft_printf_test.c
 	@make -C $(SRCDIR) re
-	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) $(SRC_TEST) -lft -L../src -lftprintf -o $(NAME)
-	./$(NAME) > ft_printf_output.txt
-	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) printf_test.c -lft -L../src -lftprintf -o $(NAME)
+	@$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) $(SRC_TEST) -lft -L../src -lftprintf -o $(NAME)
+	@./$(NAME) > ft_printf_output.txt
+	@$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) printf_test.c -lft -L../src -lftprintf -o $(NAME)
 	./$(NAME) > printf_output.txt
-	diff ft_printf_output.txt printf_output.txt > output_diff
+	-diff ft_printf_output.txt printf_output.txt > output_diff
+	vim output_diff
 
 clean:
 	@rm -f *.o

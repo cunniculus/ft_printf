@@ -12,9 +12,6 @@ int main(void)
 	ft_printf("  # |_> return = %d\n", p); 
 	ft_printf("% u\n", 1234);
 
-	ft_printf(" --- --- p: convert pointer --- ---\n");
-	p = ft_printf("%p\n", &p);
-	ft_printf("  # |_> return = %d\n", p); 
 
 	ft_printf(" #: --- --- Alternative Conversion --- ---\n");
 	ft_printf("\t%%#o, 10 --> %#o\n", 10);
@@ -50,10 +47,6 @@ int main(void)
 	ft_printf("|%+#X!\n", number); // ' ' ignored
 	ft_printf("|%#+o!\n", number); // ' ' ignored
 	ft_printf("|%+#o!\n", number); // ' ' ignored
-	ft_printf("|%20#+x!\n", number); // wrong 
-	ft_printf("|%20+#X!\n", number); // wrong
-	ft_printf("|%#20+o!\n", number); // wrong
-	ft_printf("|%+20#o!\n", number); // wrong 
 
 	ft_printf("\n ### Mistura de # com + e (.)\n");
 	ft_printf(" + is ignored\n");
@@ -61,15 +54,12 @@ int main(void)
 	ft_printf("|%#+20.5o!\n", number); // as expected 
 	ft_printf("|%+#20.10o!\n", number); // as expected
 	ft_printf("|%+#20.5o!\n", number); // as expected 
+	ft_printf("|%5.5d!\n", 12); // as expected 
 	ft_printf("|%+#o!\n", number); // ' ' ignored
 	ft_printf("|%#+x!\n", number); // ' ' ignored 
 	ft_printf("|%+#X!\n", number); // ' ' ignored
 	ft_printf("|%#+o!\n", number); // ' ' ignored
 	ft_printf("|%+#o!\n", number); // ' ' ignored
-	ft_printf("|%20#+x!\n", number); // wrong 
-	ft_printf("|%20+#X!\n", number); // wrong
-	ft_printf("|%#20+o!\n", number); // wrong
-	ft_printf("|%+20#o!\n", number); // wrong 
 
 	ft_printf("\n ### Mistura de # com ' '\n");
 	ft_printf("\n ' ' is ignored\n");
@@ -85,16 +75,57 @@ int main(void)
 	ft_printf("|%#5o!\n", number); // as expected 
 
 	ft_printf("\n ### Mistura de # com -\n");
-	ft_printf("%-#20X!\n", number);  // worked as expected
-	ft_printf("%#-20o!\n", number); // worked as expected
+	ft_printf("%-#X!\n", number);  // worked as expected
+	ft_printf("%#-o!\n", number); // worked as expected
 	ft_printf("%#-x!\n", number); 
 	ft_printf("%-#x!\n", number); 
-	ft_printf("%20-#X!\n", number); 
-	ft_printf("%20#-X!\n", number); 
-	ft_printf("%-20#X!\n", number); 
-	ft_printf("%#20-o!\n", number); 
 	ft_printf("%-#o!\n", number); 
 	
+	ft_printf("\n ### Mistura de # com width\n");
+	ft_printf("%#10X!\n", number);  // worked as expected
+	ft_printf("%%#10x |%#10x!\n", number); // worked as expected
+	ft_printf("%#10o!\n", number); // worked as expected
+								
+	ft_printf("\n ### Mistura de # com  precision\n");
+	ft_printf("%#.5X!\n", number);  // worked as expected
+	ft_printf("%%#.5x -> |%#.5x!\n", number); // worked as expected
+	ft_printf("%#.5o!\n", number); // worked as expected
+	
+
+	ft_printf("\n ### Mistura de # com precision w width\n");
+	ft_printf("%%#.5X -> |%#.5X!\n", number);  // worked as expected
+	ft_printf("%%#5.5X -> |%#5.5X!\n", number);  // worked as expected
+	ft_printf("%%#4.5X -> |%#4.5X!\n", number);  // worked as expected
+	ft_printf("%%#3.5X -> |%#3.5X!\n", number);  // worked as expected
+	ft_printf("%%#2.5X -> |%#2.5X!\n", number);  // worked as expected
+	ft_printf("%%#1.5X -> |%#1.5X!\n", number);  // worked as expected
+	ft_printf("%%#0.5X -> |%#0.5X!\n", number);  // worked as expected
+	ft_printf("%%#.5X -> |%#.5X!\n", number);  // worked as expected
+	ft_printf("%%#5.5X -> |%#.5X!\n", number);  // worked as expected
+	ft_printf("%%#6.5X -> |%#.5X!\n", number);  // worked as expected
+	ft_printf("%%#7.5X -> |%#.5X!\n", number);  // worked as expected
+	ft_printf("%%#8.5X -> |%#.5X!\n", number);  // worked as expected
+	ft_printf("%%#9.5X -> |%#.5X!\n", number);  // worked as expected
+	ft_printf("%%#10.5X -> |%#.5X!\n", number);  // worked as expected
+
+
+									//
+	ft_printf("\n ### Mistura de # com 0 and width\n");
+	ft_printf("first bug: %%#010X, 10 -->> |%#010X!\n", number);  // worked as expected
+	ft_printf("%0#10X!\n", number); // worked as expected
+	ft_printf("%0#10x!\n", number); // worked as expected
+	ft_printf("%0#10o!\n", number); // worked as expected
+
+	ft_printf("\n ### Mistura de # com 0, width and precision\n");
+	ft_printf("%%#10.1X -> |%#10.1X!\n", number);  // worked as expected
+	ft_printf("%#10.2X!\n", number);  // worked as expected
+	ft_printf("%#10.3X!\n", number);  // worked as expected
+	ft_printf("%#10.4X!\n", number); // worked as expected
+	ft_printf("%0#10.1X!\n", number);  // worked as expected
+	ft_printf("%0#10.2X!\n", number);  // worked as expected
+	ft_printf("%0#10.3X!\n", number);  // worked as expected
+	ft_printf("%0#10.4X!\n", number); // worked as expected
+
 	ft_printf("\n ### Mistura de #, ' ',  e +\n");
 	ft_printf(" ' ' and + are ignored\n");
 	ft_printf("%#+ x!\n", number); 
@@ -108,10 +139,6 @@ int main(void)
 	ft_printf("|% #X!\n", number); // ' ' ignored
 	ft_printf("|%# o!\n", number); // ' ' ignored
 	ft_printf("|% #o!\n", number); // ' ' ignored
-	ft_printf("|%20# x!\n", number); // wrong 
-	ft_printf("|%20 #X!\n", number); // wrong
-	ft_printf("|%#20 o!\n", number); // wrong
-	ft_printf("|% 20#o !\n", number); // wrong 
 
 	ft_printf("\n now the ' ':\n");
 	ft_printf("% d!\n", number);
@@ -210,16 +237,6 @@ int main(void)
 	ft_printf("%-.5dHello!\n", number);
 	ft_printf("%-.6iHello!\n", number);
 
-	ft_printf("\n");
-	ft_printf("%.-dHello!\n", number);
-	ft_printf("%.-0dHello!\n", number);
-	ft_printf("%.-1dHello!\n", number);
-	ft_printf("%.-2dHello!\n", number);
-	ft_printf("%.-3dHello!\n", number);
-	ft_printf("%.-4dHello!\n", number);
-	ft_printf("%.-5dHello!\n", number);
-	ft_printf("%.-6iHello!\n", number);
-
 
 	ft_printf("\n   ### Combination of . and 0\n");
 	ft_printf("%.0xHello!\n", number);
@@ -252,11 +269,6 @@ int main(void)
 	ft_printf("%10cGo\n", 'G');
 	
 	ft_printf("\n%0s\n", "abc");
-
-	ft_printf("\n%p\n", number);
-	ft_printf("%0p\n", number);
-	ft_printf("%3p\n", number);
-	ft_printf("%20p\n", number);
 
 /* tests for padding */
 	ft_printf("\n%02d |%03d |\n", 1, -1);

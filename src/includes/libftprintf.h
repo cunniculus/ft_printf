@@ -49,6 +49,7 @@ char	*ft_strjoin_free(char *s1, char  **s2);
 size_t	convert_u(t_printf_info *info, va_list args);
 size_t	convert_di(t_printf_info *info, va_list args);
 size_t	width_and_precision_handler(t_printf_info *info, char *str);
+int		max_length(int num1, int num2);
 size_t	convert_c_and_percent(t_printf_info *info, va_list args);
 size_t	convert_s(t_printf_info *info, va_list args);
 size_t	convert_p(t_printf_info *info, va_list args);

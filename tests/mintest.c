@@ -129,7 +129,9 @@ void test_setup_bonus(void) // setup at the start of a test suit
 	expected_int[37] = 11;
 	expected_int[38] = 20;
 	expected_int[39] = 14;
-	expected_int[40] = 10;
+	expected_int[40] = 14;
+	expected_int[41] = 8;
+	expected_int[42] = 9;
 
 
 
@@ -206,7 +208,7 @@ MU_TEST(test_width)
 	mu_assert_int_eq(expected_int[24], result_int[24]);
 	result_int[25] = ft_printf("%1x |%1x |\n", 10, 18);
 	mu_assert_int_eq(expected_int[25], result_int[25]);
-	result_int[26] = ft_printf("%2x |%3x |\n", 10, 18);
+	/* 18 */ result_int[26] = ft_printf("%2x |%3x |\n", 10, 18);
 	mu_assert_int_eq(expected_int[26], result_int[26]);
 	result_int[27] = ft_printf("%#5x |%#6x |\n", 10, 18);
 	mu_assert_int_eq(expected_int[27], result_int[27]);
@@ -236,6 +238,7 @@ MU_TEST(test_padding)
 	mu_assert_int_eq(expected_int[36], result_int[36]);
 }
 
+/* test 11 */
 MU_TEST(test_precision)
 {
 	result_int[37] = ft_printf("%.3d |%.3i |\n", 1, 12);
@@ -246,6 +249,16 @@ MU_TEST(test_precision)
 	mu_assert_int_eq(expected_int[39], result_int[39]);
 	result_int[40] = ft_printf("%.2x |%.3x |\n", 10, 17);
 	mu_assert_int_eq(expected_int[40], result_int[40]);
+	result_int[41] = ft_printf("|%5.5d!\n", 12);
+	mu_assert_int_eq(expected_int[41], result_int[41]);
+	result_int[42] = ft_printf("|%6.5d!\n", 12);
+	mu_assert_int_eq(expected_int[42], result_int[42]);
+	/*
+	ft_printf("|%#+20.5o!\n", number);
+	ft_printf("|%+#20.10o!\n", number);
+	ft_printf("|%+#20.5o!\n", number);
+	*/
+
 }
 MU_TEST_SUITE(bonus) 
 {

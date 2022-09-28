@@ -50,8 +50,11 @@ int	convert_base(t_printf_info *info, va_list args)
 	unsigned	nbr;
 	char		*str;
 	size_t		counter;
+	int			len;
+	int			max_len;
 
 	counter = 0;
+	len = 0;
 	if (info->spec == 'o')
 	{
 		nbr = va_arg(args, unsigned int);
@@ -59,12 +62,14 @@ int	convert_base(t_printf_info *info, va_list args)
 		if (info->alt)
 			if (nbr)
 				str = ft_strjoin_free("0", &str);
-		while (info->width - info->prec > (int) ft_strlen(str))
+		len = (int) ft_strlen(str);
+		max_len = max_length(info->prec, len);
+		while (info->width > max_len)
 		{
 			counter += ft_putchar_fd(info->pad, 1);
 			info->width--;
 		}
-		while (info->prec > (int) ft_strlen(str))
+		while (info->prec > len)
 		{
 			counter += ft_putchar_fd('0', 1);
 			info->prec--;
@@ -76,41 +81,67 @@ int	convert_base(t_printf_info *info, va_list args)
 	{
 		nbr = va_arg(args, unsigned int);
 		str = ft_litoa_base(nbr, HEXBASELOW);
-		if (info->alt)
-			if (nbr)
+		
+		if (info->prec)
+		{
+			len = (int) ft_strlen(str);
+			while (info->prec > len)
+			{
+				str = ft_strjoin_free("0", &str);
+				info->prec--;
+			}
+			counter += ft_putstr_fd("0x", 1);
+			counter += ft_putstr_fd(str, 1);
+			return (counter);
+		}
+
+		if (info->alt && nbr)
+		{
+			if (!info->prec && !(info->width >= 0 && info->pad == '0'))
 				str = ft_strjoin_free("0x", &str);
-		while (info->width - info->prec > (int) ft_strlen(str))
+		}
+		len = (int) ft_strlen(str);
+		while (info->width > len)
 		{
 			counter += ft_putchar_fd(info->pad, 1);
 			info->width--;
-		}
-		while (info->prec > (int) ft_strlen(str))
-		{
-			counter += ft_putchar_fd('0', 1);
-			info->prec--;
 		}
 		counter += ft_putstr_fd(str, 1);
 		free (str);
 	}
 	if (info->spec == 'X')
 	{
+
 		nbr = va_arg(args, unsigned int);
 		str = ft_litoa_base(nbr, HEXBASEUP);
-		if (info->alt)
-			if (nbr)
-				str = ft_strjoin_free("0X", &str);
-		while (info->width - info->prec > (int) ft_strlen(str))
+		
+		if (info->prec)
+		{
+			len = (int) ft_strlen(str);
+			while (info->prec > len)
+			{
+				str = ft_strjoin_free("0", &str);
+				info->prec--;
+			}
+			if (info-alt && nbr)
+				str ft_strjoin_free("0X", &str);
+			counter += ft_putstr_fd(str, 1);
+		}
+		if (info->width)
+		{
+
+			if (info->alt && nbr)
+			{
+			counter += ft_putstr_fd("0X", 1);
+		}
+		len = (int) ft_strlen(str);
+		while (info->width > len)
 		{
 			counter += ft_putchar_fd(info->pad, 1);
 			info->width--;
 		}
-		while (info->prec > (int) ft_strlen(str))
-		{
-			counter += ft_putchar_fd('0', 1);
-			info->prec--;
-		}
 		counter += ft_putstr_fd(str, 1);
 		free (str);
 	}
-	return (counter);
+		return (counter);
 }

@@ -12,9 +12,6 @@ int main(void)
 	printf("  # |_> return = %d\n", p); 
 	printf("% u\n", 1234);
 
-	printf(" --- --- p: convert pointer --- ---\n");
-	p = printf("%p\n", &p);
-	printf("  # |_> return = %d\n", p); 
 
 	printf(" #: --- --- Alternative Conversion --- ---\n");
 	printf("\t%%#o, 10 --> %#o\n", 10);
@@ -50,10 +47,6 @@ int main(void)
 	printf("|%+#X!\n", number); // ' ' ignored
 	printf("|%#+o!\n", number); // ' ' ignored
 	printf("|%+#o!\n", number); // ' ' ignored
-	printf("|%20#+x!\n", number); // wrong 
-	printf("|%20+#X!\n", number); // wrong
-	printf("|%#20+o!\n", number); // wrong
-	printf("|%+20#o!\n", number); // wrong 
 
 	printf("\n ### Mistura de # com + e (.)\n");
 	printf(" + is ignored\n");
@@ -61,15 +54,12 @@ int main(void)
 	printf("|%#+20.5o!\n", number); // as expected 
 	printf("|%+#20.10o!\n", number); // as expected
 	printf("|%+#20.5o!\n", number); // as expected 
+	printf("|%5.5d!\n", 12); // as expected 
 	printf("|%+#o!\n", number); // ' ' ignored
 	printf("|%#+x!\n", number); // ' ' ignored 
 	printf("|%+#X!\n", number); // ' ' ignored
 	printf("|%#+o!\n", number); // ' ' ignored
 	printf("|%+#o!\n", number); // ' ' ignored
-	printf("|%20#+x!\n", number); // wrong 
-	printf("|%20+#X!\n", number); // wrong
-	printf("|%#20+o!\n", number); // wrong
-	printf("|%+20#o!\n", number); // wrong 
 
 	printf("\n ### Mistura de # com ' '\n");
 	printf("\n ' ' is ignored\n");
@@ -85,16 +75,57 @@ int main(void)
 	printf("|%#5o!\n", number); // as expected 
 
 	printf("\n ### Mistura de # com -\n");
-	printf("%-#20X!\n", number);  // worked as expected
-	printf("%#-20o!\n", number); // worked as expected
+	printf("%-#X!\n", number);  // worked as expected
+	printf("%#-o!\n", number); // worked as expected
 	printf("%#-x!\n", number); 
 	printf("%-#x!\n", number); 
-	printf("%20-#X!\n", number); 
-	printf("%20#-X!\n", number); 
-	printf("%-20#X!\n", number); 
-	printf("%#20-o!\n", number); 
 	printf("%-#o!\n", number); 
 	
+	printf("\n ### Mistura de # com width\n");
+	printf("%#10X!\n", number);  // worked as expected
+	printf("%%#10x |%#10x!\n", number); // worked as expected
+	printf("%#10o!\n", number); // worked as expected
+								
+	printf("\n ### Mistura de # com  precision\n");
+	printf("%#.5X!\n", number);  // worked as expected
+	printf("%%#.5x -> |%#.5x!\n", number); // worked as expected
+	printf("%#.5o!\n", number); // worked as expected
+	
+
+	printf("\n ### Mistura de # com precision w width\n");
+	printf("%%#.5X -> |%#.5X!\n", number);  // worked as expected
+	printf("%%#5.5X -> |%#5.5X!\n", number);  // worked as expected
+	printf("%%#4.5X -> |%#4.5X!\n", number);  // worked as expected
+	printf("%%#3.5X -> |%#3.5X!\n", number);  // worked as expected
+	printf("%%#2.5X -> |%#2.5X!\n", number);  // worked as expected
+	printf("%%#1.5X -> |%#1.5X!\n", number);  // worked as expected
+	printf("%%#0.5X -> |%#0.5X!\n", number);  // worked as expected
+	printf("%%#.5X -> |%#.5X!\n", number);  // worked as expected
+	printf("%%#5.5X -> |%#.5X!\n", number);  // worked as expected
+	printf("%%#6.5X -> |%#.5X!\n", number);  // worked as expected
+	printf("%%#7.5X -> |%#.5X!\n", number);  // worked as expected
+	printf("%%#8.5X -> |%#.5X!\n", number);  // worked as expected
+	printf("%%#9.5X -> |%#.5X!\n", number);  // worked as expected
+	printf("%%#10.5X -> |%#.5X!\n", number);  // worked as expected
+
+
+									//
+	printf("\n ### Mistura de # com 0 and width\n");
+	printf("first bug: %%#010X, 10 -->> |%#010X!\n", number);  // worked as expected
+	printf("%0#10X!\n", number); // worked as expected
+	printf("%0#10x!\n", number); // worked as expected
+	printf("%0#10o!\n", number); // worked as expected
+
+	printf("\n ### Mistura de # com 0, width and precision\n");
+	printf("%%#10.1X -> |%#10.1X!\n", number);  // worked as expected
+	printf("%#10.2X!\n", number);  // worked as expected
+	printf("%#10.3X!\n", number);  // worked as expected
+	printf("%#10.4X!\n", number); // worked as expected
+	printf("%0#10.1X!\n", number);  // worked as expected
+	printf("%0#10.2X!\n", number);  // worked as expected
+	printf("%0#10.3X!\n", number);  // worked as expected
+	printf("%0#10.4X!\n", number); // worked as expected
+
 	printf("\n ### Mistura de #, ' ',  e +\n");
 	printf(" ' ' and + are ignored\n");
 	printf("%#+ x!\n", number); 
@@ -108,10 +139,6 @@ int main(void)
 	printf("|% #X!\n", number); // ' ' ignored
 	printf("|%# o!\n", number); // ' ' ignored
 	printf("|% #o!\n", number); // ' ' ignored
-	printf("|%20# x!\n", number); // wrong 
-	printf("|%20 #X!\n", number); // wrong
-	printf("|%#20 o!\n", number); // wrong
-	printf("|% 20#o !\n", number); // wrong 
 
 	printf("\n now the ' ':\n");
 	printf("% d!\n", number);
@@ -210,16 +237,6 @@ int main(void)
 	printf("%-.5dHello!\n", number);
 	printf("%-.6iHello!\n", number);
 
-	printf("\n");
-	printf("%.-dHello!\n", number);
-	printf("%.-0dHello!\n", number);
-	printf("%.-1dHello!\n", number);
-	printf("%.-2dHello!\n", number);
-	printf("%.-3dHello!\n", number);
-	printf("%.-4dHello!\n", number);
-	printf("%.-5dHello!\n", number);
-	printf("%.-6iHello!\n", number);
-
 
 	printf("\n   ### Combination of . and 0\n");
 	printf("%.0xHello!\n", number);
@@ -252,11 +269,6 @@ int main(void)
 	printf("%10cGo\n", 'G');
 	
 	printf("\n%0s\n", "abc");
-
-	printf("\n%p\n", number);
-	printf("%0p\n", number);
-	printf("%3p\n", number);
-	printf("%20p\n", number);
 
 /* tests for padding */
 	printf("\n%02d |%03d |\n", 1, -1);

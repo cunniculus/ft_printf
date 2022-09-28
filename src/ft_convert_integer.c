@@ -42,20 +42,31 @@ size_t convert_di(t_printf_info *info, va_list args)
 
 size_t	width_and_precision_handler(t_printf_info *info, char *str)
 {
-	size_t	len;
+	int	len;
+	int max_len;
 	size_t	counter;
 
-	len = ft_strlen(str);
+	len = (int) ft_strlen(str);
+	max_len = max_length(info->prec, len);
 	counter = 0;
-	while (info->width - info->prec > (int) len)
+	while (info->width > max_len)
 	{
 		counter += ft_putchar_fd(info->pad, 1);
 		info->width--;
 	}
-	while (info->prec > (int) len)
+	while (info->prec > len)
 	{
 		counter += ft_putchar_fd('0', 1);
 		info->prec--;
 	}
 	return counter;
 }
+
+int	max_length(int num1, int num2)
+{
+	if (num1 > num2)
+		return (num1);
+	else
+		return (num2);
+}
+
