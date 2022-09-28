@@ -5,8 +5,8 @@
 int main(void)
 {
 	int number = 10;
-	int p;
 
+/*
 	printf(" --- --- u: convert unsigned int --- ---\n");
 	p = printf("Largest unsigned int: %u!\n", INT_MAX + (-1) * INT_MIN);
 	printf("  # |_> return = %d\n", p); 
@@ -171,10 +171,31 @@ int main(void)
 	printf("%02xHello!\n", number);
 	printf("%03xHello!\n", number);
 	printf("%04xHello!\n", number);
+	*/
 
 /* precision */
 	number = 123;
 	printf("\n ### Precision: (.)\n");
+	printf("\n    ### Precision with %%d \n");
+	printf("%.dHello!\n", number);
+	printf("%.0dHello!\n", number);
+	printf("%.1dHello!\n", number);
+	printf("%.2dHello!\n", number);
+	printf("%.3dHello!\n", number);
+	printf("%.4dHello!\n", number);
+	printf("%.5dHello!\n", number);
+	printf("%.6dHello!\n", number);
+	printf("\n    ### Precision with %%i \n");
+	printf("%.dHello!\n", number);
+	printf("%.0dHello!\n", number);
+	printf("%.1dHello!\n", number);
+	printf("%.2dHello!\n", number);
+	printf("%.3dHello!\n", number);
+	printf("%.4dHello!\n", number);
+	printf("%.5dHello!\n", number);
+	printf("%.6dHello!\n", number);
+	printf("\n ### Precision: (.)\n");
+	printf("\n    ### Precision with %%u \n");
 	printf("%.dHello!\n", number);
 	printf("%.0dHello!\n", number);
 	printf("%.1dHello!\n", number);
@@ -184,9 +205,9 @@ int main(void)
 	printf("%.5dHello!\n", number);
 	printf("%.6iHello!\n", number);
 
-
 	printf("\n");
 	printf("precision with string\n");
+	printf("\n    ### Precision with %%s \n");
 	printf("%.0s nothing if precision .0\n", "Hello!");
 	printf("%.s nothing if precifion just .\n", "Hello!");
 	printf("%.1s\n", "Hello!");
@@ -198,7 +219,7 @@ int main(void)
 	printf("%.7s\n", "Hello!");
 	printf("%.8s\n", "Hello!");
 	printf("%.9s\n", "Hello!");
-
+/*
 	printf("\n ### Mistura com - (.)\n");
 	printf(" if -. works just like .\n if .- output is bizarre\n");
 	printf("%-.dHello!\n", number);
@@ -258,16 +279,16 @@ int main(void)
 	printf("%3p\n", number);
 	printf("%20p\n", number);
 
-/* tests for padding */
+// tests for padding 
 	printf("\n%02d |%03d |\n", 1, -1);
 	printf("%02i |%03i |\n", 1, -1);
 
-/* octal */
+// octal 
 	printf("\n%o\n", -10);
 	printf("%#04o\n", 10);
 	printf("%0#4o\n", 10);
 
-/* precision */
+// precision 
 	number = -123;
 	printf("\n ### Precision: (.)\n");
 	printf("%.dHello!\n", number);
@@ -296,5 +317,6 @@ int main(void)
 	printf("%6.4dHello!\n", number);
 	printf("%6.5dHello!\n", number);
 	printf("%6.6iHello!\n", number);
+	*/
 	return (0);
 }

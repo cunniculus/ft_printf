@@ -12,11 +12,15 @@
 
 static unsigned int expected_int[SIZE];
 static unsigned int result_int[SIZE];
-//static const char* expected_str;
+static char *expected_str[SIZE];
 //static const char* result_str;
+static int fd;
 
 void test_setup_1(void) // setup at the start of a test suit
-{
+{	
+	fd = open("test_output.txt", O_RDONLY);
+	expected_str[0] = get_next_line(fd);
+	expected_str[1] = get_next_line(fd);
 	expected_int[0] = 4;
 	expected_int[1] = 20;
 	expected_int[2] = 12;
@@ -27,7 +31,14 @@ void test_setup_1(void) // setup at the start of a test suit
 
 void test_teardown_1(void) // closing down at the end of a test suit
 {
-	/* Nothing */
+	int n = 2;
+	int i = 0;
+	while (i < n)
+	{
+		free (expected_str[i]);
+		i++;
+	}
+	close(fd);
 }
 
 /* test 01 */
@@ -35,35 +46,33 @@ MU_TEST(test_print_char)
 {
 	result_int[0] = ft_printf("%c%c%c\n", 'G', 'U', 'I');
 	mu_assert_int_eq(expected_int[0], result_int[0]);
+	mu_assert_string_eq(expected_str[0], "GUI\n");
 }
 /* test 02 */
 MU_TEST(test_print_str) 
 {
 	result_int[1] = ft_printf("%s%s%s\n", "Gui", " Coelho", " Oliveira");
 	mu_assert_int_eq(expected_int[1], result_int[1]);
+	mu_assert_string_eq(expected_str[1], "Gui Coelho Oliveira\n");
 }
-
 /* test 03 */
 MU_TEST(test_print_percentage) 
 {
 	result_int[2] = ft_printf("%%%c%s\n", 'P', "ercentage");
 	mu_assert_int_eq(expected_int[2], result_int[2]);
 }
-
 /* test 04 */
 MU_TEST(test_print_int) 
 {
 	result_int[3] = ft_printf("%d %i%s\n", 42, 37, " anthopos");
 	mu_assert_int_eq(expected_int[3], result_int[3]);
 }
-
 /* test 05 */
 MU_TEST(test_print_uint) 
 {
 	result_int[4] = ft_printf("Largest unsigned int: %u!\n", INT_MAX + (-1) * INT_MIN);
 	mu_assert_int_eq(expected_int[4], result_int[4]);
 }
-
 /* test 06 */
 MU_TEST(test_print_pointer) 
 {
@@ -71,7 +80,6 @@ MU_TEST(test_print_pointer)
 	result_int[5] = ft_printf("%p\n", result_int);
 	mu_assert_int_eq(expected_int[5], result_int[5]);
 }
-
 
 MU_TEST_SUITE(mandatorio) // static void test_suit_1(void)
 {
@@ -89,6 +97,8 @@ MU_TEST_SUITE(mandatorio) // static void test_suit_1(void)
 
 void test_setup_bonus(void) // setup at the start of a test suit
 {
+	fd = open("test_output_bonus.txt", O_RDONLY);
+	expected_str[0] = get_next_line(fd);
 	expected_int[0] = 4;
 	expected_int[1] = 11;
 	expected_int[2] = 2;
@@ -130,15 +140,27 @@ void test_setup_bonus(void) // setup at the start of a test suit
 	expected_int[38] = 20;
 	expected_int[39] = 14;
 	expected_int[40] = 10;
-
-
-
-
+	expected_int[41] = 23;
+	expected_str[42] = get_next_line(fd);
+	expected_str[43] = get_next_line(fd);
+	expected_int[42] = atoi(expected_str[43]);
+	free(expected_str[43]);
+	//expected_str[43] = get_next_line(fd);
+	//expected_str[44] = get_next_line(fd);
+	//expected_int[43] = atoi(expected_str[43]);
+	//free(expected_str[44]);
 }
 
 void test_teardown_bonus(void) // closing down at the end of a test suit
 {
-	/* Nothing */
+	int n = 1;
+	int i = 0;
+	while (i < n)
+	{
+		free (expected_str[i]);
+		i++;
+	}
+	close (fd);
 }
 
 /* test 07 */
@@ -246,7 +268,14 @@ MU_TEST(test_precision)
 	mu_assert_int_eq(expected_int[39], result_int[39]);
 	result_int[40] = ft_printf("%.2x |%.3x |\n", 10, 17);
 	mu_assert_int_eq(expected_int[40], result_int[40]);
+	result_int[41] = ft_printf("|%20.10d!\n", 10);
+	mu_assert_string_eq(expected_str[0], "|          0000000010!\n");
+	mu_assert_int_eq(expected_int[41], result_int[41]);
+	result_int[42] = ft_printf("|%10.10d!\n", 10);
+	mu_assert_string_eq(expected_str[42], "|0000000010!\n");
+	mu_assert_int_eq(expected_int[42], result_int[42]);
 }
+
 MU_TEST_SUITE(bonus) 
 {
 	MU_SUITE_CONFIGURE(&test_setup_bonus, &test_teardown_bonus); 

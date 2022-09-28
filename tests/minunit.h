@@ -133,13 +133,13 @@ static void (*minunit_teardown)(void) = NULL;
 	}\
 	if (minunit_setup) (*minunit_setup)();\
 	minunit_status = 0;\
-	printf("\n%d:", minunit_run + 1);\
+	printf("\n%d: ", minunit_run + 1);\
 	test();\
 	minunit_run++;\
 	if (minunit_status) {\
 		minunit_fail++;\
 		printf(BOLDRED(" KO! "));\
-		printf("\n%s\n", minunit_last_message);\
+		printf("%s\n", minunit_last_message);\
 	}\
 	fflush(stdout);\
 	if (minunit_teardown) (*minunit_teardown)();\
@@ -169,7 +169,7 @@ static void (*minunit_teardown)(void) = NULL;
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(BOLDGREEN(" OK "));\
+		printf("%d."BOLDGREEN("OK "), minunit_assert);\
 	}\
 )
 
@@ -202,7 +202,7 @@ static void (*minunit_teardown)(void) = NULL;
 		minunit_status = 1;\
 		return;\
 	} else {\
-		printf(BOLDGREEN(" OK "));\
+		printf("%d."BOLDGREEN("OK "), minunit_assert);\
 	}\
 )
 
@@ -237,7 +237,7 @@ static void (*minunit_teardown)(void) = NULL;
 		minunit_status = 1;\
 		return;}\
 	else {\
-		printf(BOLDGREEN(" OK "));\
+		printf("%d."BOLDGREEN("OK "), minunit_assert);\
 	}\
 )
 /*

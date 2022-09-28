@@ -1,4 +1,5 @@
 NAME			= ft_printf_test
+
 SRC_TEST		= ft_printf_test.c
 
 CFLAGS 			= -Wall -Wextra -Werror -Wno-format
@@ -13,7 +14,9 @@ SRC 			= ft_printf.c\
 				  ft_printf_convert.c\
 				  ft_convert_integer.c\
 				  ft_convert_char_and_str.c\
-				  ft_convert_pointer.c
+				  ft_convert_pointer.c\
+				  precision.c\
+				  width.c
 SRCS 			= $(addprefix $(SRCDIR)/, $(SRC))
 
 OBJS            = ft_printf_test.o\
@@ -33,6 +36,11 @@ $(NAME): $(SRCS) $(SRC_TEST)
 	@$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) $(SRC_TEST) -lft -L../src -lftprintf -o $(NAME)
 
 m: mtest 
+	@gcc minprintf.c
+	@./a.out > test_output.txt
+	@gcc minprintf_bonus.c
+	@./a.out > test_output_bonus.txt
+	@rm a.out
 	@./mtest
 
 mtest: $(SRCS) mintest.c $(TEST_FILES)
@@ -47,6 +55,21 @@ vm: mtest
 printf:
 	@make -C $(SRCDIR) re
 	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) printf_test.c -lft -L../src -lftprintf -o $(NAME)
+	./$(NAME)
+
+dprintf: 
+	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) dprintf_test.c -lft -L../src -lftprintf -o $(NAME)
+	./$(NAME)
+
+comp: 
+	@make -C $(SRCDIR) re
+	@$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) $(SRC_TEST) -lft -L../src -lftprintf -o $(NAME)
+	@./$(NAME) > ft_printf_output.txt
+	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) dprintf_test.c -lft -L../src -lftprintf -o $(NAME)
+	./$(NAME)
+	$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) comp.c -lft -L../src -lftprintf -o $(NAME)
+	chmod 644 dprintf_output.txt
+	chmod 644 ft_printf_output.txt
 	./$(NAME)
 
 dif:
@@ -66,4 +89,4 @@ fclean: clean
 
 re: fclean all
 
-rem: fclean m
+rem: fclean all m

@@ -9,7 +9,8 @@ size_t	convert_u(t_printf_info *info, va_list args)
 	if (info->spec == 'u')
 	{
 		str_nbr = ft_utoa(va_arg(args, unsigned int));
-		counter += width_and_precision_handler(info, str_nbr);
+		str_nbr = get_precision_diu(info, &str_nbr);
+		str_nbr = get_width(info, &str_nbr);
 		counter += ft_putstr_fd(str_nbr, 1);
 		free(str_nbr);
 	}
@@ -34,7 +35,9 @@ size_t convert_di(t_printf_info *info, va_list args)
 		counter += ft_putchar_fd('-', 1);
 		i++;
 	}
-	counter += width_and_precision_handler(info, str_nbr);
+	// counter += width_and_precision_handler(info, str_nbr);
+	str_nbr = get_precision_diu(info, &str_nbr);
+	str_nbr = get_width(info, &str_nbr);
 	counter += ft_putstr_fd(&str_nbr[i], 1);
 	free(str_nbr);
 	return (counter);

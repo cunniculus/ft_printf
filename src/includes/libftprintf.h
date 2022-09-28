@@ -52,5 +52,8 @@ size_t	width_and_precision_handler(t_printf_info *info, char *str);
 size_t	convert_c_and_percent(t_printf_info *info, va_list args);
 size_t	convert_s(t_printf_info *info, va_list args);
 size_t	convert_p(t_printf_info *info, va_list args);
+char	*get_precision_diu(t_printf_info *info, char **str);
+char	*get_precision_s(t_printf_info *info, char **str);
+char	*get_width(t_printf_info *info, char **str);
 
 #endif

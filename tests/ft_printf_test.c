@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "libft.h"
 #include "libftprintf.h"
+#include <sys/stat.h>
+#include <fcntl.h>
 
 int main(void)
 {
@@ -12,8 +14,6 @@ int main(void)
 	ft_printf("  # |_> return = %d\n", p); 
 	ft_printf("% u\n", 1234);
 
-	ft_printf(" --- --- p: convert pointer --- ---\n");
-	p = ft_printf("%p\n", &p);
 	ft_printf("  # |_> return = %d\n", p); 
 
 	ft_printf(" #: --- --- Alternative Conversion --- ---\n");
@@ -50,26 +50,18 @@ int main(void)
 	ft_printf("|%+#X!\n", number); // ' ' ignored
 	ft_printf("|%#+o!\n", number); // ' ' ignored
 	ft_printf("|%+#o!\n", number); // ' ' ignored
-	ft_printf("|%20#+x!\n", number); // wrong 
-	ft_printf("|%20+#X!\n", number); // wrong
-	ft_printf("|%#20+o!\n", number); // wrong
-	ft_printf("|%+20#o!\n", number); // wrong 
 
-	ft_printf("\n ### Mistura de # com + e (.)\n");
+	ft_printf("\n ### Mistura de #, width e (.)\n");
 	ft_printf(" + is ignored\n");
-	ft_printf("|%#20.10o!\n", number); // as expected
-	ft_printf("|%#+20.5o!\n", number); // as expected 
-	ft_printf("|%+#20.10o!\n", number); // as expected
-	ft_printf("|%+#20.5o!\n", number); // as expected 
-	ft_printf("|%+#o!\n", number); // ' ' ignored
-	ft_printf("|%#+x!\n", number); // ' ' ignored 
-	ft_printf("|%+#X!\n", number); // ' ' ignored
-	ft_printf("|%#+o!\n", number); // ' ' ignored
-	ft_printf("|%+#o!\n", number); // ' ' ignored
-	ft_printf("|%20#+x!\n", number); // wrong 
-	ft_printf("|%20+#X!\n", number); // wrong
-	ft_printf("|%#20+o!\n", number); // wrong
-	ft_printf("|%+20#o!\n", number); // wrong 
+	ft_printf("|%#20.10d!\n", number); // as expected
+	ft_printf("|%#+20.5d!\n", number); // as expected 
+	ft_printf("|%+#20.10d!\n", number); // as expected
+	ft_printf("|%+#20.5d!\n", number); // as expected 
+	ft_printf("|%+#d!\n", number); // ' ' ignored
+	ft_printf("|%#+d!\n", number); // ' ' ignored 
+	ft_printf("|%+#d!\n", number); // ' ' ignored
+	ft_printf("|%#+d!\n", number); // ' ' ignored
+	ft_printf("|%+#d!\n", number); // ' ' ignored
 
 	ft_printf("\n ### Mistura de # com ' '\n");
 	ft_printf("\n ' ' is ignored\n");
@@ -108,10 +100,6 @@ int main(void)
 	ft_printf("|% #X!\n", number); // ' ' ignored
 	ft_printf("|%# o!\n", number); // ' ' ignored
 	ft_printf("|% #o!\n", number); // ' ' ignored
-	ft_printf("|%20# x!\n", number); // wrong 
-	ft_printf("|%20 #X!\n", number); // wrong
-	ft_printf("|%#20 o!\n", number); // wrong
-	ft_printf("|% 20#o !\n", number); // wrong 
 
 	ft_printf("\n now the ' ':\n");
 	ft_printf("% d!\n", number);
@@ -253,11 +241,6 @@ int main(void)
 	
 	ft_printf("\n%0s\n", "abc");
 
-	ft_printf("\n%p\n", number);
-	ft_printf("%0p\n", number);
-	ft_printf("%3p\n", number);
-	ft_printf("%20p\n", number);
-
 /* tests for padding */
 	ft_printf("\n%02d |%03d |\n", 1, -1);
 	ft_printf("%02i |%03i |\n", 1, -1);
@@ -296,5 +279,6 @@ int main(void)
 	ft_printf("%6.4dHello!\n", number);
 	ft_printf("%6.5dHello!\n", number);
 	ft_printf("%6.6iHello!\n", number);
+
 	return (0);
 }
