@@ -229,17 +229,6 @@ int main(void)
 	dprintf(fd, "%-.5dHello!\n", number);
 	dprintf(fd, "%-.6iHello!\n", number);
 
-	dprintf(fd, "\n");
-	dprintf(fd, "%.-dHello!\n", number);
-	dprintf(fd, "%.-0dHello!\n", number);
-	dprintf(fd, "%.-1dHello!\n", number);
-	dprintf(fd, "%.-2dHello!\n", number);
-	dprintf(fd, "%.-3dHello!\n", number);
-	dprintf(fd, "%.-4dHello!\n", number);
-	dprintf(fd, "%.-5dHello!\n", number);
-	dprintf(fd, "%.-6iHello!\n", number);
-
-
 	dprintf(fd, "\n   ### Combination of . and 0\n");
 	dprintf(fd, "%.0xHello!\n", number);
 	dprintf(fd, "%.01xHello!\n", number);

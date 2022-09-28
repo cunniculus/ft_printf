@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:05:53 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 23:05:54 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/28 23:51:38 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ static int setup_specification_info(const char **format, size_t *counter,\
 			info->pad = '0';
 		(*format)++;
 	}
+	if (info->left && info->pad)
+		info->pad = ' ';
 	if (ft_isdigit(**format))
 		width_setup(format, info);
 	if (**format == '.')

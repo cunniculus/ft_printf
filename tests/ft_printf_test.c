@@ -225,17 +225,6 @@ int main(void)
 	ft_printf("%-.5dHello!\n", number);
 	ft_printf("%-.6iHello!\n", number);
 
-	ft_printf("\n");
-	ft_printf("%.-dHello!\n", number);
-	ft_printf("%.-0dHello!\n", number);
-	ft_printf("%.-1dHello!\n", number);
-	ft_printf("%.-2dHello!\n", number);
-	ft_printf("%.-3dHello!\n", number);
-	ft_printf("%.-4dHello!\n", number);
-	ft_printf("%.-5dHello!\n", number);
-	ft_printf("%.-6iHello!\n", number);
-
-
 	ft_printf("\n   ### Combination of . and 0\n");
 	ft_printf("%.0xHello!\n", number);
 	ft_printf("%.01xHello!\n", number);
