@@ -15,6 +15,7 @@ SRC 			= ft_printf.c\
 				  ft_convert_integer.c\
 				  ft_convert_char_and_str.c\
 				  ft_convert_pointer.c\
+				  ft_convert_base.c\
 				  precision.c\
 				  width.c
 SRCS 			= $(addprefix $(SRCDIR)/, $(SRC))

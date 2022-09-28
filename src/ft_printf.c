@@ -16,7 +16,7 @@ int	ft_printf(const char *format, ...)
 
 	va_start(args, format);
 	printed_char_counter = 0;
-	parce_format(&format, args, &printed_char_counter); // start format string parsing
+	parce_format(&format, args, &printed_char_counter);
 	va_end(args);
 	return (printed_char_counter);
 }
@@ -25,10 +25,10 @@ static int	parce_format(const char **format, va_list args, size_t *counter)
 {
 	while (**format)
 	{
-		if (**format == '%') // conversion specification
+		if (**format == '%')
 		{
 			(*format)++;
-			converter(format, args, counter); // start conversion analysis
+			converter(format, args, counter);
 		}
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:05:33 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 18:05:35 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:05:18 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_litoa_base(unsigned long nbr, char *base);
 int 	convert_printf(t_printf_info *info, va_list args, size_t *counter);
 size_t	convert_nbr_int(t_printf_info *info, va_list args);
 int 	convert_pchar(t_printf_info *info, va_list args);
-int 	convert_base(t_printf_info *info, va_list args);
+int		convert_base(t_printf_info *info, va_list args);
 char	*ft_strjoin_free(char *s1, char  **s2);
 size_t	convert_u(t_printf_info *info, va_list args);
 size_t	convert_di(t_printf_info *info, va_list args);
@@ -66,8 +66,12 @@ size_t	convert_s(t_printf_info *info, va_list args);
 size_t	convert_p(t_printf_info *info, va_list args);
 char	*get_precision_diu(t_printf_info *info, char **str);
 char	*get_precision_s(t_printf_info *info, char **str);
+char	*get_precision_base(t_printf_info *info, char **str);
 char	*get_width(t_printf_info *info, char **str);
 char	*get_right_justify(t_printf_info *info, char **str);
 char	*get_left_justify(t_printf_info *info, char **str);
+size_t	convert_o(t_printf_info *info, va_list args);
+size_t	convert_x_low(t_printf_info *info, va_list args);
+size_t	convert_x_up(t_printf_info *info, va_list args);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_convert.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/28 20:20:14 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/28 21:13:24 by guolivei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 int	convert_printf(t_printf_info *info, va_list args, size_t *counter)
@@ -47,70 +59,11 @@ int	convert_pchar(t_printf_info *info, va_list args)
 
 int	convert_base(t_printf_info *info, va_list args)
 {
-	unsigned	nbr;
-	char		*str;
-	size_t		counter;
-
-	counter = 0;
 	if (info->spec == 'o')
-	{
-		nbr = va_arg(args, unsigned int);
-		str = ft_litoa_base(nbr, OCTALBASE);
-		if (info->alt)
-			if (nbr)
-				str = ft_strjoin_free("0", &str);
-		while (info->width - info->prec > (int) ft_strlen(str))
-		{
-			counter += ft_putchar_fd(info->pad, 1);
-			info->width--;
-		}
-		while (info->prec > (int) ft_strlen(str))
-		{
-			counter += ft_putchar_fd('0', 1);
-			info->prec--;
-		}
-		counter += ft_putstr_fd(str, 1);
-		free (str);
-	}
+		return (convert_o(info, args));
 	if (info->spec == 'x')
-	{
-		nbr = va_arg(args, unsigned int);
-		str = ft_litoa_base(nbr, HEXBASELOW);
-		if (info->alt)
-			if (nbr)
-				str = ft_strjoin_free("0x", &str);
-		while (info->width - info->prec > (int) ft_strlen(str))
-		{
-			counter += ft_putchar_fd(info->pad, 1);
-			info->width--;
-		}
-		while (info->prec > (int) ft_strlen(str))
-		{
-			counter += ft_putchar_fd('0', 1);
-			info->prec--;
-		}
-		counter += ft_putstr_fd(str, 1);
-		free (str);
-	}
+		return (convert_x_low(info, args));
 	if (info->spec == 'X')
-	{
-		nbr = va_arg(args, unsigned int);
-		str = ft_litoa_base(nbr, HEXBASEUP);
-		if (info->alt)
-			if (nbr)
-				str = ft_strjoin_free("0X", &str);
-		while (info->width - info->prec > (int) ft_strlen(str))
-		{
-			counter += ft_putchar_fd(info->pad, 1);
-			info->width--;
-		}
-		while (info->prec > (int) ft_strlen(str))
-		{
-			counter += ft_putchar_fd('0', 1);
-			info->prec--;
-		}
-		counter += ft_putstr_fd(str, 1);
-		free (str);
-	}
-	return (counter);
+		return (convert_x_up(info, args));
+	return (0);
 }
