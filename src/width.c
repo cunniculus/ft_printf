@@ -44,16 +44,28 @@ char	*get_left_justify(t_printf_info *info, char **str)
 
 char	*get_right_justify(t_printf_info *info, char **str)
 {
-	int	len;
+	int		len;
+	int		neg;
+	char	*new_str;
 
 	len = (int) ft_strlen(*str); 
+	neg = 0;
+	new_str = *str;
+	if (**str == '-' && info->pad == '0')
+	{
+		new_str = ft_strtrim(*str, "-");
+		free(*str);
+		neg = 1;
+	}
 	while(len < info->width) 
 	{
 		if (info->pad == ' ')
-			*str = ft_strjoin_free(" ", str);
+			new_str = ft_strjoin_free(" ", &new_str);
 		else
-			*str = ft_strjoin_free("0", str);
+			new_str = ft_strjoin_free("0", &new_str);
 		len++;
 	}
-	return (*str);
+	if (neg)
+		new_str = ft_strjoin_free("-", &new_str);
+	return (new_str);
 }
