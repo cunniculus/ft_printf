@@ -1,28 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   width.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/28 17:49:38 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/28 18:13:54 by guolivei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 char *get_width(t_printf_info *info, char **str)
 {
-	int	len;
+	if (info->left)
+		*str = get_left_justify(info, str);
+	else
+		*str = get_right_justify(info, str);
+	return (*str);
+}
+
+char	*get_left_justify(t_printf_info *info, char **str)
+{
+	char	*tmp;
+	int		len;
 
 	len = (int) ft_strlen(*str); 
 	while(len < info->width) 
 	{
-		*str = ft_strjoin_free(" ", str);
+		if (info->pad == ' ')
+			tmp = ft_strjoin(*str, " ");
+		else
+			tmp = ft_strjoin(*str, "0");
 		len++;
+		free(*str);
+		*str = tmp;
 	}
 	return (*str);
 }
-/*
-char *get_width_s(t_printf_info *info, char **str)
+
+char	*get_right_justify(t_printf_info *info, char **str)
 {
 	int	len;
 
 	len = (int) ft_strlen(*str); 
 	while(len < info->width) 
 	{
-		*str = ft_strjoin_free(" ", str);
+		if (info->pad == ' ')
+			*str = ft_strjoin_free(" ", str);
+		else
+			*str = ft_strjoin_free("0", str);
 		len++;
 	}
 	return (*str);
 }
-*/

@@ -21,12 +21,14 @@ size_t convert_di(t_printf_info *info, va_list args)
 {
 	char	*str_nbr;
 	size_t	counter;
-	int		i;
+	//int		i;
 
 	counter = 0;
 	str_nbr = ft_itoa(va_arg(args, int)); 
-	if (info->showsign && !(*str_nbr == '-'))
+/*	if (info->showsign && !(*str_nbr == '-'))
 		str_nbr = ft_strjoin_free("+", &str_nbr);
+*/
+	/*
 	else if (info->space && !(*str_nbr == '-'))
 		str_nbr = ft_strjoin_free(" ", &str_nbr);
 	i = 0;
@@ -35,10 +37,11 @@ size_t convert_di(t_printf_info *info, va_list args)
 		counter += ft_putchar_fd('-', 1);
 		i++;
 	}
+*/
 	// counter += width_and_precision_handler(info, str_nbr);
 	str_nbr = get_precision_diu(info, &str_nbr);
 	str_nbr = get_width(info, &str_nbr);
-	counter += ft_putstr_fd(&str_nbr[i], 1);
+	counter += ft_putstr_fd(str_nbr, 1);
 	free(str_nbr);
 	return (counter);
 }

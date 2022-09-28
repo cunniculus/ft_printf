@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/28 18:05:33 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/28 18:05:35 by guolivei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 
@@ -55,5 +67,7 @@ size_t	convert_p(t_printf_info *info, va_list args);
 char	*get_precision_diu(t_printf_info *info, char **str);
 char	*get_precision_s(t_printf_info *info, char **str);
 char	*get_width(t_printf_info *info, char **str);
+char	*get_right_justify(t_printf_info *info, char **str);
+char	*get_left_justify(t_printf_info *info, char **str);
 
 #endif

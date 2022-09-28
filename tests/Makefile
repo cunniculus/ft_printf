@@ -71,6 +71,7 @@ comp:
 	chmod 644 dprintf_output.txt
 	chmod 644 ft_printf_output.txt
 	./$(NAME)
+	diff dprintf_output.txt ft_printf_output.txt
 
 dif:
 	@make -C $(SRCDIR) re

@@ -16,6 +16,34 @@ int main(void)
 	p = dprintf(fd, "Largest unsigned int: %u!\n", INT_MAX + (-1) * INT_MIN);
 	dprintf(fd, "  # |_> return = %d\n", p); 
 	dprintf(fd, "% u\n", 1234);
+	dprintf(fd, "% 2u\n", 1234);
+	dprintf(fd, "% 4u\n", 1234);
+	dprintf(fd, "% 6u\n", 1234);
+	dprintf(fd, "%+u\n", 1234);
+	dprintf(fd, "%+2u\n", 1234);
+	dprintf(fd, "%+4u\n", 1234);
+	dprintf(fd, "%+6u\n", 1234);
+	dprintf(fd, "%-u\n", 1234);
+	dprintf(fd, "%-2u\n", 1234);
+	dprintf(fd, "%-4u\n", 1234);
+	dprintf(fd, "-->|%-6u\n", 1234);
+	dprintf(fd, "%#u\n", 1234);
+	dprintf(fd, "%#2u\n", 1234);
+	dprintf(fd, "%#4u\n", 1234);
+	dprintf(fd, "%#6u\n", 1234);
+	dprintf(fd, "%0u\n", 1234);
+	dprintf(fd, "%02u\n", 1234);
+	dprintf(fd, "%04u\n", 1234);
+	dprintf(fd, "%06u\n", 1234);
+	dprintf(fd, "%u\n", 1234);
+	dprintf(fd, "%2u\n", 1234);
+	dprintf(fd, "%4u\n", 1234);
+	dprintf(fd, "%6u\n", 1234);
+	dprintf(fd, "%.0u\n", 1234);
+	dprintf(fd, "%.u\n", 1234);
+	dprintf(fd, "%.2u\n", 1234);
+	dprintf(fd, "%.4u\n", 1234);
+	dprintf(fd, "%.6u\n", 1234);
 
 	dprintf(fd, "  # |_> return = %d\n", p); 
 
@@ -57,9 +85,9 @@ int main(void)
 	dprintf(fd, "\n ### Mistura de #, width e (.)\n");
 	dprintf(fd, " + is ignored\n");
 	dprintf(fd, "|%#20.10d!\n", number); // as expected
-	dprintf(fd, "|%#+20.5d!\n", number); // as expected 
+	dprintf(fd, "-->> |%#+20.10d!\n", number); // as expected 
 	dprintf(fd, "|%+#20.10d!\n", number); // as expected
-	dprintf(fd, "|%+#20.5d!\n", number); // as expected 
+	dprintf(fd, "|%+#20.10d!\n", number); // as expected 
 	dprintf(fd, "|%+#d!\n", number); // ' ' ignored
 	dprintf(fd, "|%#+d!\n", number); // ' ' ignored 
 	dprintf(fd, "|%+#d!\n", number); // ' ' ignored

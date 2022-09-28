@@ -13,6 +13,34 @@ int main(void)
 	p = ft_printf("Largest unsigned int: %u!\n", INT_MAX + (-1) * INT_MIN);
 	ft_printf("  # |_> return = %d\n", p); 
 	ft_printf("% u\n", 1234);
+	ft_printf("% 2u\n", 1234);
+	ft_printf("% 4u\n", 1234);
+	ft_printf("% 6u\n", 1234);
+	ft_printf("%+u\n", 1234);
+	ft_printf("%+2u\n", 1234);
+	ft_printf("%+4u\n", 1234);
+	ft_printf("%+6u\n", 1234);
+	ft_printf("%-u\n", 1234);
+	ft_printf("%-2u\n", 1234);
+	ft_printf("%-4u\n", 1234);
+	ft_printf("-->|%-6u\n", 1234);
+	ft_printf("%#u\n", 1234);
+	ft_printf("%#2u\n", 1234);
+	ft_printf("%#4u\n", 1234);
+	ft_printf("%#6u\n", 1234);
+	ft_printf("%0u\n", 1234);
+	ft_printf("%02u\n", 1234);
+	ft_printf("%04u\n", 1234);
+	ft_printf("%06u\n", 1234);
+	ft_printf("%u\n", 1234);
+	ft_printf("%2u\n", 1234);
+	ft_printf("%4u\n", 1234);
+	ft_printf("%6u\n", 1234);
+	ft_printf("%.0u\n", 1234);
+	ft_printf("%.u\n", 1234);
+	ft_printf("%.2u\n", 1234);
+	ft_printf("%.4u\n", 1234);
+	ft_printf("%.6u\n", 1234);
 
 	ft_printf("  # |_> return = %d\n", p); 
 
@@ -54,9 +82,9 @@ int main(void)
 	ft_printf("\n ### Mistura de #, width e (.)\n");
 	ft_printf(" + is ignored\n");
 	ft_printf("|%#20.10d!\n", number); // as expected
-	ft_printf("|%#+20.5d!\n", number); // as expected 
+	ft_printf("-->> |%#+20.10d!\n", number); // as expected 
 	ft_printf("|%+#20.10d!\n", number); // as expected
-	ft_printf("|%+#20.5d!\n", number); // as expected 
+	ft_printf("|%+#20.10d!\n", number); // as expected 
 	ft_printf("|%+#d!\n", number); // ' ' ignored
 	ft_printf("|%#+d!\n", number); // ' ' ignored 
 	ft_printf("|%+#d!\n", number); // ' ' ignored
