@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include "libft.h"
 #include "libftprintf.h"
@@ -10,8 +9,10 @@ int main(void)
 	int number = 10;
 	int p;
 
+
 	ft_printf("\nStrings\n");
 	ft_printf("%1s |%1s |\n", "abc", "CASA"); 
+
 	ft_printf("\n --- --- u: convert unsigned int --- ---\n");
 	p = ft_printf("Largest unsigned int: %u!\n", INT_MAX + (-1) * INT_MIN);
 	ft_printf("  # |_> return = %d\n", p); 
@@ -260,6 +261,8 @@ int main(void)
 /* tests for padding */
 	ft_printf("\n%02d |%03d |\n", 1, -1);
 	ft_printf("%02i |%03i |\n", 1, -1);
+	ft_printf("\n%2d |%3d |\n", 1, -1);
+	ft_printf("%2i |%3i |\n", 1, -1);
 
 /* octal */
 	ft_printf("\n%o\n", -10);

@@ -264,6 +264,8 @@ int main(void)
 /* tests for padding */
 	dprintf(fd, "\n%02d |%03d |\n", 1, -1);
 	dprintf(fd, "%02i |%03i |\n", 1, -1);
+	dprintf(fd, "\n%2d |%3d |\n", 1, -1);
+	dprintf(fd, "%2i |%3i |\n", 1, -1);
 
 /* octal */
 	dprintf(fd, "\n%o\n", -10);

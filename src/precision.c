@@ -19,7 +19,6 @@ char *get_precision_diu(t_printf_info *info, char **str)
 	int		neg;
 
 
-	len = (int) ft_strlen(*str); 
 	neg = FALSE;
 	tmp = *str;
 	if (**str == '-')
@@ -28,6 +27,7 @@ char *get_precision_diu(t_printf_info *info, char **str)
 		free(*str);
 		neg = TRUE;
 	}
+	len = (int) ft_strlen(tmp); 
 	while(len < info->prec) 
 	{
 		tmp = ft_strjoin_free("0", &tmp);

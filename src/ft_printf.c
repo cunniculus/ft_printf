@@ -79,7 +79,8 @@ static int setup_specification_info(const char **format, size_t *counter,\
 			info->pad = '0';
 		(*format)++;
 	}
-	if (info->left && info->pad)
+	if ((info->left && info->pad) || info->spec == 'd' || info->spec == 'i' ||\
+			info->spec == 'x' || info->spec == 'X')
 		info->pad = ' ';
 	if (ft_isdigit(**format))
 		width_setup(format, info);
