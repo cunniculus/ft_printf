@@ -12,7 +12,11 @@ int main(void)
 	int fd;
 
 	fd = open ("dprintf_output.txt", O_WRONLY | O_CREAT);
-	dprintf(fd, " --- --- u: convert unsigned int --- ---\n");
+
+	dprintf(fd, "\nStrings\n");
+	dprintf(fd, "%1s |%1s |\n", "abc", "CASA"); 
+
+	dprintf(fd, "\n --- --- u: convert unsigned int --- ---\n");
 	p = dprintf(fd, "Largest unsigned int: %u!\n", INT_MAX + (-1) * INT_MIN);
 	dprintf(fd, "  # |_> return = %d\n", p); 
 	dprintf(fd, "% u\n", 1234);
@@ -112,10 +116,6 @@ int main(void)
 	dprintf(fd, "%#-20o!\n", number); // worked as expected
 	dprintf(fd, "%#-x!\n", number); 
 	dprintf(fd, "%-#x!\n", number); 
-	dprintf(fd, "%20-#X!\n", number); 
-	dprintf(fd, "%20#-X!\n", number); 
-	dprintf(fd, "%-20#X!\n", number); 
-	dprintf(fd, "%#20-o!\n", number); 
 	dprintf(fd, "%-#o!\n", number); 
 	
 	dprintf(fd, "\n ### Mistura de #, ' ',  e +\n");
@@ -310,6 +310,7 @@ int main(void)
 	dprintf(fd, "%6.4dHello!\n", number);
 	dprintf(fd, "%6.5dHello!\n", number);
 	dprintf(fd, "%6.6iHello!\n", number);
+
 	close(fd);
 
 	return (0);

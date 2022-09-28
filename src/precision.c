@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 20:49:19 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 20:49:20 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:58:04 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char *get_precision_diu(t_printf_info *info, char **str)
 	{
 		tmp = ft_strjoin_free("+", &tmp);
 	}
-	if (info->space && !neg && info->spec != 'u') 
+	else if (info->space && !neg && info->spec != 'u') 
 	{
 		tmp = ft_strjoin_free(" ", &tmp);
 	}
@@ -48,15 +48,9 @@ char *get_precision_diu(t_printf_info *info, char **str)
 
 char *get_precision_s(t_printf_info *info, char **str)
 {
-	char	*nstr;
 
-	if (!info->prec)
-		return (*str);
-	nstr = *str;
-	if (info->spec == 's')
-		nstr = ft_substr(*str, 0, info->prec);
-	free(*str);
-	return (nstr);
+	*str = ft_substr(*str, 0, info->prec);
+	return (*str);
 }
 
 char *get_precision_base(t_printf_info *info, char **str)

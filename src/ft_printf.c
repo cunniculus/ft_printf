@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/28 23:05:53 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/28 23:05:54 by guolivei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 	
 	// if % calls converts; else calls putchar
@@ -89,6 +101,7 @@ static void	width_setup(const char **format, t_printf_info *info)
 static void	precision_setup(const char **format, t_printf_info *info)
 {
 	(*format)++;
+	info->prec = 0;
 	while (ft_isdigit(**format))
 	{
 		info->prec = info->prec * 10 + (**format - '0');
@@ -104,6 +117,6 @@ static void init_specification_info(t_printf_info *info)
 	info->showsign = FALSE;
 	info->pad = ' ';
 	info->width = -1;
-	info->prec = 0;
+	info->prec = -1;
 	info->spec = '\0';
 }

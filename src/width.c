@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 17:49:38 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 18:13:54 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:50:28 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char *get_width(t_printf_info *info, char **str)
 {
+	if (info->width == -1)
+		return (*str);
 	if (info->left)
 		*str = get_left_justify(info, str);
 	else

@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:20:57 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/10 02:23:35 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/28 23:01:21 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		buff_size = len + 1;
 	else
 		buff_size = ft_strlen(s + start) + 1;
-	substring = (char *) malloc(buff_size);
+	substring = (char *) ft_calloc(1, buff_size);
 	if (substring == NULL)
 		return (NULL);
 	if (start < s_len)

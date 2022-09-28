@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include "libft.h"
 #include "libftprintf.h"
@@ -9,7 +10,9 @@ int main(void)
 	int number = 10;
 	int p;
 
-	ft_printf(" --- --- u: convert unsigned int --- ---\n");
+	ft_printf("\nStrings\n");
+	ft_printf("%1s |%1s |\n", "abc", "CASA"); 
+	ft_printf("\n --- --- u: convert unsigned int --- ---\n");
 	p = ft_printf("Largest unsigned int: %u!\n", INT_MAX + (-1) * INT_MIN);
 	ft_printf("  # |_> return = %d\n", p); 
 	ft_printf("% u\n", 1234);
@@ -109,10 +112,6 @@ int main(void)
 	ft_printf("%#-20o!\n", number); // worked as expected
 	ft_printf("%#-x!\n", number); 
 	ft_printf("%-#x!\n", number); 
-	ft_printf("%20-#X!\n", number); 
-	ft_printf("%20#-X!\n", number); 
-	ft_printf("%-20#X!\n", number); 
-	ft_printf("%#20-o!\n", number); 
 	ft_printf("%-#o!\n", number); 
 	
 	ft_printf("\n ### Mistura de #, ' ',  e +\n");
@@ -307,6 +306,7 @@ int main(void)
 	ft_printf("%6.4dHello!\n", number);
 	ft_printf("%6.5dHello!\n", number);
 	ft_printf("%6.6iHello!\n", number);
+
 
 	return (0);
 }

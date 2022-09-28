@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 20:20:10 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 21:12:33 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/28 23:06:37 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ size_t	convert_x_low(t_printf_info *info, va_list args)
 	str = get_width(info, &str);
 	counter += ft_putstr_fd(str, 1);
 	free (str);
-
 	return (counter);
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_convert_pointer.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/28 23:09:49 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/28 23:10:22 by guolivei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 size_t	convert_p(t_printf_info *info, va_list args)
@@ -10,7 +22,7 @@ size_t	convert_p(t_printf_info *info, va_list args)
 	hex_nbr = va_arg(args, unsigned long int);
 	str = ft_litoa_base(hex_nbr, HEXBASELOW);
 	str = ft_strjoin_free("0x", &str);
-	while (info->width > (int) ft_strlen(str)) 
+	while (info->width > (int) ft_strlen(str))
 	{
 		counter += ft_putchar_fd(info->pad, 1);
 		info->width--;
@@ -19,4 +31,3 @@ size_t	convert_p(t_printf_info *info, va_list args)
 	free (str);
 	return (counter);
 }
-

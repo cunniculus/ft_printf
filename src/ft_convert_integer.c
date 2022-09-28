@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_convert_integer.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/28 23:08:13 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/28 23:09:27 by guolivei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libftprintf.h"
 
 size_t	convert_u(t_printf_info *info, va_list args)
@@ -17,28 +29,13 @@ size_t	convert_u(t_printf_info *info, va_list args)
 	return (counter);
 }
 
-size_t convert_di(t_printf_info *info, va_list args)
+size_t	convert_di(t_printf_info *info, va_list args)
 {
 	char	*str_nbr;
 	size_t	counter;
-	//int		i;
 
 	counter = 0;
-	str_nbr = ft_itoa(va_arg(args, int)); 
-/*	if (info->showsign && !(*str_nbr == '-'))
-		str_nbr = ft_strjoin_free("+", &str_nbr);
-*/
-	/*
-	else if (info->space && !(*str_nbr == '-'))
-		str_nbr = ft_strjoin_free(" ", &str_nbr);
-	i = 0;
-	if ((info->pad == '0' || info->prec) && *str_nbr == '-')
-	{
-		counter += ft_putchar_fd('-', 1);
-		i++;
-	}
-*/
-	// counter += width_and_precision_handler(info, str_nbr);
+	str_nbr = ft_itoa(va_arg(args, int));
 	str_nbr = get_precision_diu(info, &str_nbr);
 	str_nbr = get_width(info, &str_nbr);
 	counter += ft_putstr_fd(str_nbr, 1);
@@ -63,5 +60,5 @@ size_t	width_and_precision_handler(t_printf_info *info, char *str)
 		counter += ft_putchar_fd('0', 1);
 		info->prec--;
 	}
-	return counter;
+	return (counter);
 }

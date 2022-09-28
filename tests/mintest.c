@@ -121,7 +121,7 @@ void test_setup_bonus(void) // setup at the start of a test suit
 	expected_int[15] = 9;
 	expected_int[16] = 14;
 	expected_int[17] = 12;
-	expected_int[18] = 7;
+	expected_int[18] = 12;
 	expected_int[19] = 33;
 	expected_int[20] = 36;
 	expected_int[21] = 33;
@@ -264,6 +264,7 @@ MU_TEST(test_padding)
 	mu_assert_int_eq(expected_int[36], result_int[36]);
 }
 
+/* test 11 */
 MU_TEST(test_precision)
 {
 	result_int[37] = ft_printf("%.3d |%.3i |\n", 1, 12);
