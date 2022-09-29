@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 17:49:38 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/29 00:04:56 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:45:19 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ char	*get_right_justify(t_printf_info *info, char **str)
 	len = (int) ft_strlen(*str); 
 	neg = 0;
 	new_str = *str;
-	if (**str == '-' && info->pad == '0')
+	if (**str == '-' && info->pad == '0' && (info->spec == 'd'\
+			|| info->spec == 'i'))
 	{
 		new_str = ft_strtrim(*str, "-");
 		free(*str);

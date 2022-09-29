@@ -9,11 +9,14 @@ int main(void)
 	int number = 10;
 	int p;
 
-
 	ft_printf("\nStrings\n");
 	ft_printf("%1s |%1s |\n", "abc", "CASA"); 
-	ft_printf("%s", ""); 
-	//ft_printf("%s", NULL); 
+	p = ft_printf("%s", ""); 
+	ft_printf(" _> return = %d\n", p); 
+	p = ft_printf("%s", NULL); 
+	ft_printf(" _> return = %d\n", p); 
+	p = ft_printf("%.s", "hi there"); 
+	ft_printf(" _> return = %d\n", p); 
 
 	ft_printf("\n --- --- u: convert unsigned int --- ---\n");
 	p = ft_printf("Largest unsigned int: %u!\n", INT_MAX + (-1) * INT_MIN);

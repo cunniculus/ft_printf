@@ -19,6 +19,8 @@ int main(void)
 	dprintf(fd, " _> return = %d\n", p); 
 	p = dprintf(fd, "%s", NULL); 
 	dprintf(fd, " _> return = %d\n", p); 
+	p = dprintf(fd, "%.s", "hi there"); 
+	dprintf(fd, " _> return = %d\n", p); 
 
 	dprintf(fd, "\n --- --- u: convert unsigned int --- ---\n");
 	p = dprintf(fd, "Largest unsigned int: %u!\n", INT_MAX + (-1) * INT_MIN);
