@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:05:53 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 23:51:38 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/29 22:52:33 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ static void	precision_setup(const char **format, t_printf_info *info)
 {
 	(*format)++;
 	info->prec = 0;
+	while (**format == '0')
+		(*format)++;
 	while (ft_isdigit(**format))
 	{
 		info->prec = info->prec * 10 + (**format - '0');

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 23:05:48 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/29 20:20:36 by guolivei         ###   ########.fr       */
+/*   Created: 2022/09/30 00:38:18 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/30 00:38:23 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,39 @@
 
 size_t	convert_c_and_percent(t_printf_info *info, va_list args)
 {
-	size_t				counter;
+	size_t	counter;
+	char	*str;
+	char	c;
+
+	str = ft_calloc (1, sizeof (char));
+	if (info->width >= 0)
+	{
+		str = get_width(info, &str);
+		str[ft_strlen(str) - 1] = '\0';
+	}
+	if (info->spec == '%')
+		c = '%';
+	else
+		c = (unsigned char) va_arg(args, int);
+	counter = print_in_order(info, c, str);
+	free (str);
+	return (counter);
+}
+
+size_t	print_in_order (t_printf_info *info, char c, char *pad)
+{
+	size_t	counter;
 
 	counter = 0;
-	if (info->spec == '%')
-		counter += ft_putchar_fd('%', 1);
-	if (info->spec == 'c')
+	if (info->left)
 	{
-		while (info->width-- > 1)
-			counter += ft_putchar_fd(info->pad, 1);
-		counter += ft_putchar_fd((unsigned char) va_arg(args, int), 1);
+		counter += ft_putchar_fd(c, 1);
+		counter += ft_putstr_fd(pad, 1);
+	}
+	else
+	{
+		counter += ft_putstr_fd(pad, 1);
+		counter += ft_putchar_fd(c, 1);
 	}
 	return (counter);
 }
@@ -37,15 +60,21 @@ size_t	convert_s(t_printf_info *info, va_list args)
 	counter = 0;
 	str = va_arg(args, char *);
 	if (!str)
+	{
 		str = ft_strdup("(null)");
+		if (info->prec > 0 && info->prec < 6)
+		{
+			free(str);
+			return (0);
+		}
+	}
 	else
 		str = ft_strdup(str);
 	tmp = str;
 	if (info->prec >= 0)
 	{
 		str = get_precision_s(info, &str);
-		if (*str == '-')
-			free(tmp);
+		free(tmp);
 	}
 	if (info->width >= 0)
 		str = get_width(info, &str);

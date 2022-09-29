@@ -12,6 +12,7 @@ int main(void)
 	int fd;
 
 	fd = open ("dprintf_output.txt", O_WRONLY | O_CREAT);
+	dprintf(fd, "%.000000000000000000000000000005d\n", 10);
 
 	dprintf(fd, "\nStrings\n");
 	dprintf(fd, "%1s |%1s |\n", "abc", "CASA"); 

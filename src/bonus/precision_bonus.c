@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 20:49:19 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/29 19:34:43 by guolivei         ###   ########.fr       */
+/*   Created: 2022/09/30 00:08:22 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/30 00:08:29 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char *get_precision_diu(t_printf_info *info, char **str)
 	int		len;
 	char	*tmp;
 	int		neg;
-
 
 	neg = FALSE;
 	tmp = *str;
@@ -48,7 +47,6 @@ char *get_precision_diu(t_printf_info *info, char **str)
 
 char *get_precision_s(t_printf_info *info, char **str)
 {
-
 	*str = ft_substr(*str, 0, info->prec);
 	return (*str);
 }

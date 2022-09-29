@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 17:49:38 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/29 19:35:07 by guolivei         ###   ########.fr       */
+/*   Created: 2022/09/30 00:08:48 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/30 00:08:54 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_left_justify(t_printf_info *info, char **str)
 	len = (int) ft_strlen(*str); 
 	while(len < info->width) 
 	{
-		if (info->pad == ' ')
+		if (info->pad == ' ' || info->prec != -1)
 			tmp = ft_strjoin(*str, " ");
 		else
 			tmp = ft_strjoin(*str, "0");
@@ -51,7 +51,8 @@ char	*get_right_justify(t_printf_info *info, char **str)
 	len = (int) ft_strlen(*str); 
 	neg = 0;
 	new_str = *str;
-	if (**str == '-' && info->pad == '0')
+	if (**str == '-' && info->pad == '0' && (info->spec == 'd'\
+			|| info->spec == 'i') && info->prec == -1 )
 	{
 		new_str = ft_strtrim(*str, "-");
 		free(*str);
@@ -59,7 +60,7 @@ char	*get_right_justify(t_printf_info *info, char **str)
 	}
 	while(len < info->width) 
 	{
-		if (info->pad == ' ')
+		if (info->pad == ' ' || info->prec != -1)
 			new_str = ft_strjoin_free(" ", &new_str);
 		else
 			new_str = ft_strjoin_free("0", &new_str);

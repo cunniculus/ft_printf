@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 20:20:10 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/29 19:32:00 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 00:17:14 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ size_t	convert_x_low(t_printf_info *info, va_list args)
 
 	counter = 0;
 	nbr = va_arg(args, unsigned int);
+	if (!nbr && !info->prec)
+	{
+		if (info->width)
+		{
+			str = ft_strdup("");
+			str = get_width(info, &str);
+			counter += ft_putstr_fd(str, 1);
+			free(str);
+		}
+		return (counter);
+	}
 	str = ft_litoa_base(nbr, HEXBASELOW);
 	str = get_precision_base(info, &str);
 	if (info->alt && nbr)
@@ -56,6 +67,17 @@ size_t	convert_x_up(t_printf_info *info, va_list args)
 
 	counter = 0;
 	nbr = va_arg(args, unsigned int);
+	if (!nbr && !info->prec)
+	{
+		if (info->width)
+		{
+			str = ft_strdup("");
+			str = get_width(info, &str);
+			counter += ft_putstr_fd(str, 1);
+			free(str);
+		}
+		return (counter);
+	}
 	str = ft_litoa_base(nbr, HEXBASEUP);
 	str = get_precision_base(info, &str);
 	if (info->alt && nbr)

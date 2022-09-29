@@ -38,6 +38,7 @@ $(NAME): $(OBJECTS)
 $(OBJECTS): $(SOURCES) $(INCLUDES)
 	@echo compiling
 	@make -C $(LIBFT_DIR)
+	mv $(LIBFT_DIR)/$(LIBFT) $(NAME)
 	@$(CC) $(CFLAGS) -I$(INCLUDES) -I$(PRINT_INCLUDES) -c $(SOURCES)
 
 bonus: $(OBJECTS_BONUS)
@@ -45,6 +46,7 @@ bonus: $(OBJECTS_BONUS)
 $(OBJECTS_BONUS): $(SOURCES_BONUS)
 	@echo compiling bonus
 	@make -C $(LIBFT_DIR)
+	mv $(LIBFT_DIR)/$(LIBFT) $(NAME)
 	@$(CC) $(CFLAGS) -I$(INCLUDES) -I$(BONUS_INCLUDES) -c $(SOURCES_BONUS)
 	@echo building ft_printf bonus library
 	@ar rcs $(NAME) $(OBJECTS_BONUS)

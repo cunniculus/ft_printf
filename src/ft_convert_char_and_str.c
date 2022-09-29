@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:05:48 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/29 21:34:11 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 00:37:06 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,40 @@
 
 size_t	convert_c_and_percent(t_printf_info *info, va_list args)
 {
-	size_t				counter;
-	char *str;
+	size_t	counter;
+	char	*str;
+	char	c;
 
-	counter = 0;
 	str = ft_calloc (1, sizeof (char));
 	if (info->width >= 0)
 	{
 		str = get_width(info, &str);
 		str[ft_strlen(str) - 1] = '\0';
 	}
+	if (info->spec == '%')
+		c = '%';
+	else
+		c = (unsigned char) va_arg(args, int);
+	counter = print_in_order(info, c, str);
+	free (str);
+	return (counter);
+}
+
+size_t	print_in_order (t_printf_info *info, char c, char *pad)
+{
+	size_t	counter;
+
+	counter = 0;
 	if (info->left)
 	{
-		if (info->spec == '%')
-			counter += ft_putchar_fd('%', 1);
-		else
-			counter += ft_putchar_fd((unsigned char) va_arg(args, int), 1);
-		counter += ft_putstr_fd(str, 1);
+		counter += ft_putchar_fd(c, 1);
+		counter += ft_putstr_fd(pad, 1);
 	}
 	else
 	{
-		counter += ft_putstr_fd(str, 1);
-		if (info->spec == '%')
-			counter += ft_putchar_fd('%', 1);
-		else
-			counter += ft_putchar_fd((unsigned char) va_arg(args, int), 1);
+		counter += ft_putstr_fd(pad, 1);
+		counter += ft_putchar_fd(c, 1);
 	}
-	free (str);
 	return (counter);
 }
 

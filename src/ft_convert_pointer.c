@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:09:49 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/29 20:22:47 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/29 22:15:06 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ size_t	convert_p(t_printf_info *info, va_list args)
 		str = ft_litoa_base(hex_nbr, HEXBASELOW);
 		str = ft_strjoin_free("0x", &str);
 	}
-	while (info->width > (int) ft_strlen(str))
-	{
-		counter += ft_putchar_fd(info->pad, 1);
-		info->width--;
-	}
+	str = get_width(info, &str);
 	counter += ft_putstr_fd(str, 1);
 	free (str);
 	return (counter);

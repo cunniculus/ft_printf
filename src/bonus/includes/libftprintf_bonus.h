@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   libftprintf_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:05:33 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 21:05:18 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 00:39:25 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef LIBFTPRINTF_BONUS_H
+# define LIBFTPRINTF_BONUS_H
 
 # ifndef FLAG_SIZE
 #  define FLAG_SIZE 32
@@ -62,6 +62,7 @@ size_t	convert_u(t_printf_info *info, va_list args);
 size_t	convert_di(t_printf_info *info, va_list args);
 size_t	width_and_precision_handler(t_printf_info *info, char *str);
 size_t	convert_c_and_percent(t_printf_info *info, va_list args);
+size_t	print_in_order(t_printf_info *info, char c, char *pad);
 size_t	convert_s(t_printf_info *info, va_list args);
 size_t	convert_p(t_printf_info *info, va_list args);
 char	*get_precision_diu(t_printf_info *info, char **str);

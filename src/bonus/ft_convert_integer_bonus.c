@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:08:13 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/29 19:32:39 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 00:04:14 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,24 @@
 
 size_t	convert_u(t_printf_info *info, va_list args)
 {
-	char	*str_nbr;
-	size_t	counter;
+	char			*str_nbr;
+	size_t			counter;
+	unsigned int	nbr;
 
+	nbr = va_arg(args, unsigned int);
 	counter = 0;
-	if (info->spec == 'u')
+	if (!nbr && !info->prec)
 	{
-		str_nbr = ft_utoa(va_arg(args, unsigned int));
-		str_nbr = get_precision_diu(info, &str_nbr);
-		str_nbr = get_width(info, &str_nbr);
-		counter += ft_putstr_fd(str_nbr, 1);
-		free(str_nbr);
+		if (info->width)
+		{
+			str_nbr = ft_strdup("");
+			str_nbr = get_width(info, &str_nbr);
+			counter += ft_putstr_fd(str_nbr, 1);
+			free(str_nbr);
+		}
+		return (counter);
 	}
-	return (counter);
-}
-
-size_t	convert_di(t_printf_info *info, va_list args)
-{
-	char	*str_nbr;
-	size_t	counter;
-
-	counter = 0;
-	str_nbr = ft_itoa(va_arg(args, int));
+	str_nbr = ft_utoa(nbr);
 	str_nbr = get_precision_diu(info, &str_nbr);
 	str_nbr = get_width(info, &str_nbr);
 	counter += ft_putstr_fd(str_nbr, 1);
@@ -43,22 +39,29 @@ size_t	convert_di(t_printf_info *info, va_list args)
 	return (counter);
 }
 
-size_t	width_and_precision_handler(t_printf_info *info, char *str)
+size_t	convert_di(t_printf_info *info, va_list args)
 {
-	size_t	len;
+	char	*str_nbr;
 	size_t	counter;
+	int		nbr;
 
-	len = ft_strlen(str);
+	nbr = va_arg(args, int);
 	counter = 0;
-	while (info->width - info->prec > (int) len)
+	if (!nbr && !info->prec)
 	{
-		counter += ft_putchar_fd(info->pad, 1);
-		info->width--;
+		if (info->width)
+		{
+			str_nbr = ft_strdup("");
+			str_nbr = get_width(info, &str_nbr);
+			counter += ft_putstr_fd(str_nbr, 1);
+			free(str_nbr);
+		}
+		return (counter);
 	}
-	while (info->prec > (int) len)
-	{
-		counter += ft_putchar_fd('0', 1);
-		info->prec--;
-	}
+	str_nbr = ft_itoa(nbr);
+	str_nbr = get_precision_diu(info, &str_nbr);
+	str_nbr = get_width(info, &str_nbr);
+	counter += ft_putstr_fd(str_nbr, 1);
+	free(str_nbr);
 	return (counter);
 }
