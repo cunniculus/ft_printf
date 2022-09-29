@@ -34,7 +34,7 @@ all: $(NAME)
 
 $(NAME): $(SRCS) $(SRC_TEST)
 	@make -C $(SRCDIR) re
-	@$(CC) $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) $(SRC_TEST) -lft -L../src -lftprintf -o $(NAME)
+	@$(CC) -g3 $(CFLAGS) -I$(PRINTF_INCLUDES) -I$(LIBFT_INCLUDES) -L$(LIBFT_DIR) $(SRCS) $(SRC_TEST) -lft -L../src -lftprintf -o $(NAME)
 
 m: mtest 
 	@gcc minprintf.c

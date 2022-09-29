@@ -32,12 +32,18 @@ size_t	convert_s(t_printf_info *info, va_list args)
 {
 	size_t	counter;
 	char	*str;
+	char	*tmp;
 
 	counter = 0;
 	str = va_arg(args, char *);
 	str = ft_strdup(str);
+	tmp = str;
 	if (info->prec >= 0)
+	{
 		str = get_precision_s(info, &str);
+		if (*str == '-')
+			free(tmp);
+	}
 	if (info->width >= 0)
 		str = get_width(info, &str);
 	counter += ft_putstr_fd(str, 1);
