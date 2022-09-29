@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:05:53 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 23:51:38 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:33:21 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libftprintf_bonus.h"
 	
 	// if % calls converts; else calls putchar
 static int	parce_format(const char **format, va_list args, size_t *counter);

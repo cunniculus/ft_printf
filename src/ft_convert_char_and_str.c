@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:05:48 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 23:23:01 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:11:24 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ size_t	convert_s(t_printf_info *info, va_list args)
 
 	counter = 0;
 	str = va_arg(args, char *);
+	if (!str)
+	{
+		counter += ft_putstr_fd("(null)", 1);
+		return (counter);
+	}
 	str = ft_strdup(str);
 	tmp = str;
 	if (info->prec >= 0)

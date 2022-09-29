@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   precision.c                                        :+:      :+:    :+:   */
+/*   precision_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 20:49:19 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 22:58:04 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:34:43 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libftprintf_bonus.h"
 
 char *get_precision_diu(t_printf_info *info, char **str)
 {

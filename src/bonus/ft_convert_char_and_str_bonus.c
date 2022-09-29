@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:05:48 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/28 23:23:01 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:11:24 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,23 @@ size_t	convert_s(t_printf_info *info, va_list args)
 {
 	size_t	counter;
 	char	*str;
+	char	*tmp;
 
 	counter = 0;
 	str = va_arg(args, char *);
+	if (!str)
+	{
+		counter += ft_putstr_fd("(null)", 1);
+		return (counter);
+	}
 	str = ft_strdup(str);
+	tmp = str;
 	if (info->prec >= 0)
+	{
 		str = get_precision_s(info, &str);
+		if (*str == '-')
+			free(tmp);
+	}
 	if (info->width >= 0)
 		str = get_width(info, &str);
 	counter += ft_putstr_fd(str, 1);

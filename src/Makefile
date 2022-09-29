@@ -18,6 +18,7 @@ LIBFT_DIR		:= libft
 INCLUDES		:= $(LIBFT_DIR)/includes 
 
 PRINT_INCLUDES  := includes
+BONUS_INCLUDES  := bonus/includes
 
 GNL_HEADER		:= $(INCLUDES)/get_next_line.h
 LIBFT_HEADER	:= $(INCLUDES)/libft.h
@@ -44,7 +45,7 @@ bonus: $(OBJECTS_BONUS)
 $(OBJECTS_BONUS): $(SOURCES_BONUS)
 	@echo compiling bonus
 	@make -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) -I$(INCLUDES) -I$(PRINT_INCLUDES) -c $(SOURCES_BONUS)
+	@$(CC) $(CFLAGS) -I$(INCLUDES) -I$(BONUS_INCLUDES) -c $(SOURCES_BONUS)
 	@echo building ft_printf bonus library
 	@ar rcs $(NAME) $(OBJECTS_BONUS)
 

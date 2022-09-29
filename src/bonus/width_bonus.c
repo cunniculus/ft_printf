@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   width.c                                            :+:      :+:    :+:   */
+/*   width_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 17:49:38 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/29 00:04:56 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:35:07 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libftprintf_bonus.h"
 
 char *get_width(t_printf_info *info, char **str)
 {
