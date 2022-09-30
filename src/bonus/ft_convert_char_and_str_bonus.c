@@ -5,12 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 01:09:49 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/30 02:08:16 by guolivei         ###   ########.fr       */
+/*   Created: 2022/09/30 18:00:12 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/30 18:00:53 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
+
+static size_t	print_in_order(t_printf_info *info, char c, char *pad);
+static char		*get_prec_and_width_s(t_printf_info *info, char **str);
 
 size_t	convert_c_and_percent(t_printf_info *info, va_list args)
 {
@@ -33,7 +36,7 @@ size_t	convert_c_and_percent(t_printf_info *info, va_list args)
 	return (counter);
 }
 
-size_t	print_in_order(t_printf_info *info, char c, char *pad)
+static size_t	print_in_order(t_printf_info *info, char c, char *pad)
 {
 	size_t	counter;
 
@@ -75,7 +78,7 @@ size_t	convert_s(t_printf_info *info, va_list args)
 	return (counter);
 }
 
-char	*get_prec_and_width_s(t_printf_info *info, char **str)
+static char	*get_prec_and_width_s(t_printf_info *info, char **str)
 {
 	char	*tmp;
 

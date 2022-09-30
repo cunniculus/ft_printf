@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 14:31:41 by coder             #+#    #+#             */
-/*   Updated: 2022/09/14 02:26:07 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:15:32 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # ifndef UINT_MAX
 #  define UINT_MAX 4294967295
 # endif
+
 typedef struct s_list
 {
 	void			*content;
@@ -70,7 +71,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
-char	*ft_utoa(unsigned n);
+char	*ft_utoa(unsigned int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 size_t	ft_putchar_fd(char c, int fd);

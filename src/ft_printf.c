@@ -6,14 +6,14 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:05:53 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/30 01:54:24 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:32:27 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"	
 
-static int	parce_format(const char **format, va_list args, size_t *counter);
-static int	converter(const char **format, va_list args, size_t *counter);
+static void	parce_format(const char **format, va_list args, size_t *counter);
+static void	converter(const char **format, va_list args, size_t *counter);
 
 int	ft_printf(const char *format, ...)
 {
@@ -27,7 +27,7 @@ int	ft_printf(const char *format, ...)
 	return (printed_char_counter);
 }
 
-static int	parce_format(const char **format, va_list args, size_t *counter)
+static void	parce_format(const char **format, va_list args, size_t *counter)
 {
 	while (**format)
 	{
@@ -43,15 +43,13 @@ static int	parce_format(const char **format, va_list args, size_t *counter)
 		}
 		(*format)++;
 	}
-	return (*counter);
 }
 
-static int	converter(const char **format, va_list args, size_t *counter)
+static void	converter(const char **format, va_list args, size_t *counter)
 {
 	t_printf_info	info;
 
 	init_specification_info(&info);
 	setup_specification_info(format, counter, &info);
 	convert_printf(&info, args, counter);
-	return (0);
 }

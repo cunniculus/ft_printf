@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 01:57:20 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/30 02:04:42 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:33:16 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ typedef struct s_printf_info
 int		ft_printf(const char *format, ...);
 int		setup_specification_info(const char **format, size_t *counter, \
 		t_printf_info *info);
-void	width_setup(const char **format, t_printf_info *info);
-void	precision_setup(const char **format, t_printf_info *info);
 void	init_specification_info(t_printf_info *info);
 int		char_is_flag(int c);
 int		char_is_specifier(char c);
@@ -60,16 +58,11 @@ int		ft_putnbr_base(unsigned long nbr, char *base);
 char	*ft_litoa_base(unsigned long nbr, char *base);
 int		convert_printf(t_printf_info *info, va_list args, \
 		size_t *counter);
-size_t	convert_nbr_int(t_printf_info *info, va_list args);
-int		convert_pchar(t_printf_info *info, va_list args);
-int		convert_base(t_printf_info *info, va_list args);
 char	*ft_strjoin_free(char *s1, char **s2);
 size_t	convert_u(t_printf_info *info, va_list args);
 size_t	convert_di(t_printf_info *info, va_list args);
 size_t	width_and_precision_handler(t_printf_info *info, char *str);
 size_t	convert_c_and_percent(t_printf_info *info, va_list args);
-size_t	print_in_order(t_printf_info *info, char c, char *pad);
-char	*get_prec_and_width_s(t_printf_info *info, char **str);
 size_t	convert_s(t_printf_info *info, va_list args);
 size_t	convert_p(t_printf_info *info, va_list args);
 char	*get_precision_diu(t_printf_info *info, char **str);

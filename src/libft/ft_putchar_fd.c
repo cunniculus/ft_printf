@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 04:23:50 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/07 04:29:07 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:00:22 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 size_t	ft_putchar_fd(char c, int fd)
 {
-
 	return (write(fd, &c, 1));
 }

@@ -6,11 +6,15 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 20:20:14 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/30 01:54:41 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:26:02 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static size_t	convert_nbr_int(t_printf_info *info, va_list args);
+static size_t	convert_pchars(t_printf_info *info, va_list args);
+static size_t	convert_base(t_printf_info *info, va_list args);
 
 int	convert_printf(t_printf_info *info, va_list args, size_t *counter)
 {
@@ -22,7 +26,7 @@ int	convert_printf(t_printf_info *info, va_list args, size_t *counter)
 		(*counter) += conv;
 		return (*counter);
 	}
-	conv = (convert_pchar(info, args));
+	conv = (convert_pchars(info, args));
 	if (conv)
 	{
 		(*counter) += conv;
@@ -37,7 +41,7 @@ int	convert_printf(t_printf_info *info, va_list args, size_t *counter)
 	return (*counter);
 }
 
-size_t	convert_nbr_int(t_printf_info *info, va_list args)
+static size_t	convert_nbr_int(t_printf_info *info, va_list args)
 {
 	if (info->spec == 'u')
 		return (convert_u(info, args));
@@ -46,7 +50,7 @@ size_t	convert_nbr_int(t_printf_info *info, va_list args)
 	return (0);
 }
 
-int	convert_pchar(t_printf_info *info, va_list args)
+static size_t	convert_pchars(t_printf_info *info, va_list args)
 {
 	if (info->spec == '%' || info->spec == 'c')
 		return (convert_c_and_percent(info, args));
@@ -57,7 +61,7 @@ int	convert_pchar(t_printf_info *info, va_list args)
 	return (0);
 }
 
-int	convert_base(t_printf_info *info, va_list args)
+static size_t	convert_base(t_printf_info *info, va_list args)
 {
 	if (info->spec == 'o')
 		return (convert_o(info, args));
