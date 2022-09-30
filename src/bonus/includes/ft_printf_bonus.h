@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 01:57:20 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/30 18:04:52 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:10:09 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int		setup_specification_info(const char **format, size_t *counter, \
 void	init_specification_info(t_printf_info *info);
 int		char_is_flag(int c);
 int		char_is_specifier(char c);
-int		ft_putnbr_base(unsigned long nbr, char *base);
-char	*ft_litoa_base(unsigned long nbr, char *base);
+int		ft_putnbr_base(unsigned long int nbr, char *base);
+char	*ft_litoa_base(unsigned long int nbr, char *base);
 int		convert_printf(t_printf_info *info, va_list args, \
 		size_t *counter);
 char	*ft_strjoin_free(char *s1, char **s2);

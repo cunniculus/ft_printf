@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 18:25:21 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/30 01:55:03 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:09:06 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	char_is_specifier(char c)
 	return (FALSE);
 }
 
-int	ft_putnbr_base(unsigned long nbr, char *base)
+int	ft_putnbr_base(unsigned long int nbr, char *base)
 {
 	unsigned long int	b;
 	int					digit;
@@ -55,7 +55,7 @@ int	ft_putnbr_base(unsigned long nbr, char *base)
 	return (ft_strlen(nbr_to_print));
 }
 
-char	*ft_litoa_base(unsigned long nbr, char *base)
+char	*ft_litoa_base(unsigned long int nbr, char *base)
 {
 	unsigned long int	b;
 	int					digit;
