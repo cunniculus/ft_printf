@@ -6,13 +6,13 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 17:49:38 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/29 22:57:33 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 01:55:45 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-char *get_width(t_printf_info *info, char **str)
+char	*get_width(t_printf_info *info, char **str)
 {
 	if (info->width == -1)
 		return (*str);
@@ -28,8 +28,8 @@ char	*get_left_justify(t_printf_info *info, char **str)
 	char	*tmp;
 	int		len;
 
-	len = (int) ft_strlen(*str); 
-	while(len < info->width) 
+	len = (int) ft_strlen(*str);
+	while (len < info->width)
 	{
 		if (info->pad == ' ' || info->prec != -1)
 			tmp = ft_strjoin(*str, " ");
@@ -48,17 +48,17 @@ char	*get_right_justify(t_printf_info *info, char **str)
 	int		neg;
 	char	*new_str;
 
-	len = (int) ft_strlen(*str); 
+	len = (int) ft_strlen(*str);
 	neg = 0;
 	new_str = *str;
 	if (**str == '-' && info->pad == '0' && (info->spec == 'd'\
-			|| info->spec == 'i') && info->prec == -1 )
+			|| info->spec == 'i') && info->prec == -1)
 	{
 		new_str = ft_strtrim(*str, "-");
 		free(*str);
 		neg = 1;
 	}
-	while(len < info->width) 
+	while (len < info->width)
 	{
 		if (info->pad == ' ' || info->prec != -1)
 			new_str = ft_strjoin_free(" ", &new_str);

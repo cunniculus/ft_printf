@@ -6,11 +6,11 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:05:48 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/30 00:37:06 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 01:53:34 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 size_t	convert_c_and_percent(t_printf_info *info, va_list args)
 {
@@ -33,7 +33,7 @@ size_t	convert_c_and_percent(t_printf_info *info, va_list args)
 	return (counter);
 }
 
-size_t	print_in_order (t_printf_info *info, char c, char *pad)
+size_t	print_in_order(t_printf_info *info, char c, char *pad)
 {
 	size_t	counter;
 
@@ -55,7 +55,6 @@ size_t	convert_s(t_printf_info *info, va_list args)
 {
 	size_t	counter;
 	char	*str;
-	char	*tmp;
 
 	counter = 0;
 	str = va_arg(args, char *);
@@ -70,15 +69,23 @@ size_t	convert_s(t_printf_info *info, va_list args)
 	}
 	else
 		str = ft_strdup(str);
-	tmp = str;
-	if (info->prec >= 0)
-	{
-		str = get_precision_s(info, &str);
-		free(tmp);
-	}
-	if (info->width >= 0)
-		str = get_width(info, &str);
+	str = get_prec_and_width_s(info, &str);
 	counter += ft_putstr_fd(str, 1);
 	free(str);
 	return (counter);
+}
+
+char	*get_prec_and_width_s(t_printf_info *info, char **str)
+{
+	char	*tmp;
+
+	tmp = *str;
+	if (info->prec >= 0)
+	{
+		*str = get_precision_s(info, str);
+		free(tmp);
+	}
+	if (info->width >= 0)
+		*str = get_width(info, str);
+	return (*str);
 }

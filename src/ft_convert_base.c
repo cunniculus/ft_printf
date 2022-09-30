@@ -6,11 +6,11 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 20:20:10 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/30 00:15:56 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/09/30 01:53:16 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 size_t	convert_o(t_printf_info *info, va_list args)
 {

@@ -1,6 +1,7 @@
 NAME			:= libftprintf.a
 SOURCES			:= ft_printf.c\
 				   ft_printf_utils.c\
+				   specs_setup.c\
 				   ft_printf_convert.c\
 				   ft_convert_integer.c\
 				   ft_convert_char_and_str.c\
@@ -22,7 +23,7 @@ BONUS_INCLUDES  := bonus/includes
 
 GNL_HEADER		:= $(INCLUDES)/get_next_line.h
 LIBFT_HEADER	:= $(INCLUDES)/libft.h
-FTPRINTF_HEADER	:= libftprintf.h
+FTPRINTF_HEADER	:= ft_printf.h
 
 LIBFT			:= libft.a
 

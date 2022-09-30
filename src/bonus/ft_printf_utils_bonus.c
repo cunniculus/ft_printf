@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 18:25:21 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/30 00:07:52 by guolivei         ###   ########.fr       */
+/*   Created: 2022/09/30 01:42:03 by guolivei          #+#    #+#             */
+/*   Updated: 2022/09/30 02:09:44 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf_bonus.h"
+#include "ft_printf_bonus.h"
 
 int	char_is_flag(int c)
 {
@@ -19,10 +19,10 @@ int	char_is_flag(int c)
 	return (FALSE);
 }
 
-int char_is_specifier(char c)
+int	char_is_specifier(char c)
 {
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' ||\
-		c == 'x' || c == 'X' || c == 'o')
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u'\
+			|| c == 'x' || c == 'X' || c == 'o')
 		return (TRUE);
 	return (FALSE);
 }
@@ -55,7 +55,7 @@ int	ft_putnbr_base(unsigned long nbr, char *base)
 	return (ft_strlen(nbr_to_print));
 }
 
-char *ft_litoa_base(unsigned long nbr, char *base)
+char	*ft_litoa_base(unsigned long nbr, char *base)
 {
 	unsigned long int	b;
 	int					digit;
@@ -109,4 +109,3 @@ char	*ft_strjoin_free(char *s1, char **s2)
 		free(*s2);
 	return (str);
 }
-
