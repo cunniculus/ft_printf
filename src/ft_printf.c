@@ -6,7 +6,7 @@
 /*   By: guolivei <guolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 23:05:53 by guolivei          #+#    #+#             */
-/*   Updated: 2022/09/30 16:32:27 by guolivei         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:49:43 by guolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	size_t	printed_char_counter;
 
+	if (!format)
+		return (-1);
 	va_start(args, format);
 	printed_char_counter = 0;
 	parce_format(&format, args, &printed_char_counter);
