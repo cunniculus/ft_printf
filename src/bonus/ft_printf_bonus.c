@@ -20,6 +20,8 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	size_t	printed_char_counter;
 
+	if (!format)
+		return (-1);
 	va_start(args, format);
 	printed_char_counter = 0;
 	parce_format(&format, args, &printed_char_counter);
