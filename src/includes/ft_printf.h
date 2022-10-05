@@ -16,10 +16,6 @@
 # include <stdarg.h>
 # include "libft.h"
 
-# ifndef FLAG_SIZE
-#  define FLAG_SIZE 32
-# endif
-
 # ifndef HEXBASELOW
 #  define HEXBASELOW "0123456789abcdef"
 # endif
